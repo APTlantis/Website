@@ -37,9 +37,8 @@ const VolunteerPage = lazy(() =>
 const MuseumPage = lazy(() =>
   import('./features/museum').then(module => ({ default: module.MuseumPage }))
 );
-/* Commented out as the route is not used
+// Lazy load the CodingWeirdStuffPage
 const CodingWeirdStuffPage = lazy(() => import("./features/coding-weird-stuff").then(module => ({ default: module.CodingWeirdStuffPage })))
-*/
 
 function App() {
   return (
@@ -66,8 +65,7 @@ function App() {
                           {/* <Route path="/flash-iso" element={<FlashISOPage />} /> */}
                           <Route path="/irc" element={<IRCServerPage />} />
                           <Route path="/museum" element={<MuseumPage />} />
-                          {/* Route hidden as requested */}
-                          {/* <Route path="/coding-weird-stuff" element={<CodingWeirdStuffPage />} /> */}
+                          <Route path="/coding-weird-stuff" element={<CodingWeirdStuffPage />} />
                         </Routes>
                       </Suspense>
                     </ErrorBoundary>

@@ -1,0 +1,338 @@
+[
+  {
+    "name": "apt-RsyncAlma",
+    "container": "apt-RsyncAlma",
+    "frequency":"0 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name AlmaLinux --path /mnt/aptlantis/mirrors/AlmaLinux -av --delete rsync://rsync.repo.almalinux.org/almalinux/ /mnt/aptlantis/mirrors/AlmaLinux/ >> /mnt/aptlantis/mirrors/logs/almalinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncArch",
+    "container": "apt-RsyncArch",
+    "frequency":"15 */4 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name ArchLinux --path /mnt/aptlantis/mirrors/ArchLinux -av --delete rsync://mirror.0xem.ma/arch/ /mnt/aptlantis/mirrors/ArchLinux/ >> /mnt/aptlantis/mirrors/logs/archlinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncAlpine",
+    "container": "apt-RsyncAlpine",
+    "frequency":"30 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name AlpineLinux --path /mnt/aptlantis/mirrors/AlpineLinux -av --delete rsync://rsync.alpinelinux.org/alpine/ /mnt/aptlantis/mirrors/AlpineLinux/ >> /mnt/aptlantis/mirrors/logs/alpinelinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncALTLinux",
+    "container": "apt-RsyncALTLinux",
+    "frequency":"45 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name ALTLinux --path /mnt/aptlantis/mirrors/ALTLinux -av --delete rsync://rsync.altlinux.org/ALTLinux/ /mnt/aptlantis/mirrors/ALTLinux/ >> /mnt/aptlantis/mirrors/logs/altlinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncArmbian",
+    "container": "apt-RsyncArmbian",
+    "frequency":"0 1 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name ArmbianLinux --path /mnt/aptlantis/isos/ArmbianLinux -av --delete rsync://mirrors.bfsu.edu.cn/armbian-releases/ /mnt/aptlantis/isos/ArmbianLinux/ >> /mnt/aptlantis/mirrors/logs/armbian_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncArtix",
+    "container": "apt-RsyncArtix",
+    "frequency":"15 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name ArtixLinux --path /mnt/aptlantis/mirrors/ArtixLinux -auvPH --delete-after rsync://mirror1.artixlinux.org/artix-linux/ /mnt/aptlantis/mirrors/ArtixLinux/ >> /mnt/aptlantis/mirrors/logs/artixlinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncAthena",
+    "container": "apt-RsyncAthena",
+    "frequency":"30 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name AthenaOS --path /mnt/aptlantis/mirrors/AthenaOS -avzzlr --delete rsync://hub.athenaos.org/athena/ /mnt/aptlantis/mirrors/AthenaOS/ >> /mnt/aptlantis/mirrors/logs/athenaos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncAthenaISO",
+    "container": "apt-RsyncAthenaISO",
+    "frequency":"0 2 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name AthenaOS-ISOs --path /mnt/aptlantis/isos/AthenaOS -avzzlr rsync://hub.athenaos.org/athena-images/ /mnt/aptlantis/isos/AthenaOS/ >> /mnt/aptlantis/mirrors/logs/athenaos_isos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncBackBoxLinux",
+    "container": "apt-RsyncBackBoxLinux",
+    "frequency":"45 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name BackBoxLinux --path /mnt/aptlantis/mirrors/BackBoxLinux -av --delete rsync://ftp.halifax.rwth-aachen.de/backbox/ /mnt/aptlantis/mirrors/BackBoxLinux/ >> /mnt/aptlantis/mirrors/logs/backboxlinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncBlackArchLinux",
+    "container": "apt-RsyncBlackArchLinux",
+    "frequency":"0 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name BlackArchLinux --path /mnt/aptlantis/mirrors/BlackArchLinux -av --delete rsync://blackarch.org/blackarch/ /mnt/aptlantis/mirrors/BlackArchLinux/ >> /mnt/aptlantis/mirrors/logs/blackarchlinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncCalculateLinux",
+    "container": "apt-RsyncCalculateLinux",
+    "frequency":"15 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name CalculateLinux --path /mnt/aptlantis/mirrors/CalculateLinux -av --delete rsync://mirror.yandex.ru/calculate/ /mnt/aptlantis/mirrors/CalculateLinux/ >> /mnt/aptlantis/mirrors/logs/calculatelinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncCentOS-Stream",
+    "container": "apt-RsyncCentOS-Stream",
+    "frequency":"30 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name CentOS-Stream --path /mnt/aptlantis/mirrors/CentOS-Stream -aqzH --delay-updates --delete-after rsync.stream.centos.org::CentOS-Stream-nosrc/ /mnt/aptlantis/mirrors/CentOS-Stream/ >> /mnt/aptlantis/mirrors/logs/centos_stream_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncDebian",
+    "container": "apt-RsyncDebian",
+    "frequency":"45 */4 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Debian --path /mnt/aptlantis/mirrors/Debian -av rsync://ftp.br.debian.org/debian/ /mnt/aptlantis/mirrors/Debian/ >> /mnt/aptlantis/mirrors/logs/debian_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncDebianISO",
+    "container": "apt-RsyncDebianISO",
+    "frequency":"0 3 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Debian-ISOs --path /mnt/aptlantis/isos/Debian -av rsync://ftp.halifax.rwth-aachen.de/debian-cd/ /mnt/aptlantis/isos/Debian/ >> /mnt/aptlantis/mirrors/logs/debian_isos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncDeepin",
+    "container": "apt-RsyncDeepin",
+    "frequency":"15 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Deepin --path /mnt/aptlantis/mirrors/Deepin -av --delete rsync://ftp.fau.de/deepin/ /mnt/aptlantis/mirrors/Deepin/ >> /mnt/aptlantis/mirrors/logs/deepin_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncDeepinISO",
+    "container": "apt-RsyncDeepinISO",
+    "frequency":"0 4 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Deepin-ISOs --path /mnt/aptlantis/isos/Deepin -av --delete rsync://ftp.fau.de/deepin-cd/ /mnt/aptlantis/isos/Deepin/ >> /mnt/aptlantis/mirrors/logs/deepin_isos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncDevuan",
+    "container": "apt-RsyncDevuan",
+    "frequency":"30 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Devuan --path /mnt/aptlantis/mirrors/Devuan -av --delete rsync://ftp.fau.de/devuan/ /mnt/aptlantis/mirrors/Devuan/ >> /mnt/aptlantis/mirrors/logs/devuan_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncEndeavourOS",
+    "container": "apt-RsyncEndeavourOS",
+    "frequency":"45 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name EndeavourOS --path /mnt/aptlantis/mirrors/EndeavourOS -av --delete rsync://mirror.csclub.uwaterloo.ca/endeavouros/ /mnt/aptlantis/mirrors/EndeavourOS/ >> /mnt/aptlantis/mirrors/logs/endeavouros_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncFedora-Enchilda",
+    "container": "apt-RsyncFedora-Enchilda",
+    "frequency":"0 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Fedora-Enchilda --path /mnt/aptlantis/mirrors/Fedora-Enchilda -av --delete rsync://ftp-stud.hs-esslingen.de/fedora-enchilada/ /mnt/aptlantis/mirrors/Fedora-Enchilda/ >> /mnt/aptlantis/mirrors/logs/fedora_enchilda_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncFreeBSD",
+    "container": "apt-RsyncFreeBSD",
+    "frequency":"15 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name FreeBSD --path /mnt/aptlantis/mirrors/FreeBSD -av --delete rsync://mirror.csclub.uwaterloo.ca/FreeBSD/ /mnt/aptlantis/mirrors/FreeBSD/ >> /mnt/aptlantis/mirrors/logs/freebsd_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncGarudaLinux",
+    "container": "apt-RsyncGarudaLinux",
+    "frequency":"0 5 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name GarudaLinux --path /mnt/aptlantis/isos/GarudaLinux -av --delete rsync://mirrors.bfsu.edu.cn/osdn/storage/g/g/ga/garuda-linux/ /mnt/aptlantis/isos/GarudaLinux/ >> /mnt/aptlantis/mirrors/logs/garudalinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncGentooLinux",
+    "container": "apt-RsyncGentooLinux",
+    "frequency":"30 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name GentooLinux --path /mnt/aptlantis/isos/GentooLinux -av --delete rsync://linux.rz.ruhr-uni-bochum.de/gentoo/ /mnt/aptlantis/isos/GentooLinux/ >> /mnt/aptlantis/mirrors/logs/gentoolinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncGutenberg",
+    "container": "apt-RsyncGutenberg",
+    "frequency":"0 6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Gutenberg --path /mnt/aptlantis/mirrors/Gutenberg -av --delete ftp.ibiblio.org::gutenberg/ /mnt/aptlantis/mirrors/Gutenberg/ >> /mnt/aptlantis/mirrors/logs/gutenberg_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncGutenberg-Generated",
+    "container": "apt-RsyncGutenberg-Generated",
+    "frequency":"0 7 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Gutenberg-Generated --path /mnt/aptlantis/mirrors/Gutenberg-Generated -av --delete ftp@ftp.ibiblio.org::gutenberg-epub/ /mnt/aptlantis/mirrors/Gutenberg-Generated/ >> /mnt/aptlantis/mirrors/logs/gutenberg_generated_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncKaliLinux",
+    "container": "apt-RsyncKaliLinux",
+    "frequency":"45 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name KaliLinux --path /mnt/aptlantis/mirrors/KaliLinux -av --delete rsync://ftp.halifax.rwth-aachen.de/kali/ /mnt/aptlantis/mirrors/KaliLinux/ >> /mnt/aptlantis/mirrors/logs/kalilinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncKaOS",
+    "container": "apt-RsyncKaOS",
+    "frequency":"0 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name KaOS --path /mnt/aptlantis/mirrors/KaOS -av --delete rsync://mirrors.bfsu.edu.cn/solus/ /mnt/aptlantis/mirrors/KaOS/ >> /mnt/aptlantis/mirrors/logs/kaos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncKDE-Neon",
+    "container": "apt-RsyncKDE-Neon",
+    "frequency":"15 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name KDE-Neon --path /mnt/aptlantis/mirrors/KDE-Neon -av --delete rsync://mirrors.bfsu.edu.cn/kde-neon/ /mnt/aptlantis/mirrors/KDE-Neon/ >> /mnt/aptlantis/mirrors/logs/kde_neon_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncLinuxMint",
+    "container": "apt-RsyncLinuxMint",
+    "frequency":"30 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name LinuxMint --path /mnt/aptlantis/mirrors/LinuxMint -av --delete rsync-packages.linuxmint.com::packages/ /mnt/aptlantis/mirrors/LinuxMint/ >> /mnt/aptlantis/mirrors/logs/linuxmint_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncManjaroLinux",
+    "container": "apt-RsyncManjaroLinux",
+    "frequency":"45 */4 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name ManjaroLinux --path /mnt/aptlantis/mirrors/ManjaroLinux -av --delete rsync://ftp.halifax.rwth-aachen.de/manjaro/ /mnt/aptlantis/mirrors/ManjaroLinux/ >> /mnt/aptlantis/mirrors/logs/manjarolinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncMX-antiX",
+    "container": "apt-RsyncMX-antiX",
+    "frequency":"0 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name MX-antiX --path /mnt/aptlantis/mirrors/MX-antiX -av --delete rsync://mirror.datamossa.io/mxlinux/ /mnt/aptlantis/mirrors/MX-antiX/ >> /mnt/aptlantis/mirrors/logs/mx_antix_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncMX-antiX-ISO",
+    "container": "apt-RsyncMX-antiX-ISO",
+    "frequency":"0 8 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name MX-antiX-ISOs --path /mnt/aptlantis/isos/MX-antiX -av rsync://mirror.datamossa.io/mxlinux-iso/ /mnt/aptlantis/isos/MX-antiX/ >> /mnt/aptlantis/mirrors/logs/mx_antix_isos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncNixOS",
+    "container": "apt-RsyncNixOS",
+    "frequency":"15 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name NixOS --path /mnt/aptlantis/mirrors/NixOS -av --delete rsync://mirrors.tuna.tsinghua.edu.cn/nix/ /mnt/aptlantis/mirrors/NixOS/ >> /mnt/aptlantis/mirrors/logs/nixos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncopenBSD",
+    "container": "apt-RsyncopenBSD",
+    "frequency":"30 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name openBSD --path /mnt/aptlantis/mirrors/openBSD -av --delete rsync://ftp.fau.de/openbsd/ /mnt/aptlantis/mirrors/openBSD/ >> /mnt/aptlantis/mirrors/logs/openbsd_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncOpenMandriva",
+    "container": "apt-RsyncOpenMandriva",
+    "frequency":"45 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name OpenMandriva --path /mnt/aptlantis/mirrors/OpenMandriva -av --delete rsync://openmandriva.c3sl.ufpr.br/openmandriva/ /mnt/aptlantis/mirrors/OpenMandriva/ >> /mnt/aptlantis/mirrors/logs/openmandriva_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncopenSUSE",
+    "container": "apt-RsyncopenSUSE",
+    "frequency":"0 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name openSUSE --path /mnt/aptlantis/mirrors/openSUSE -rlptyH rsync.opensuse.org::opensuse-full /mnt/aptlantis/mirrors/openSUSE/ --delay-updates --delete-delay -hi --stats >> /mnt/aptlantis/mirrors/logs/opensuse_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncOracleLinux",
+    "container": "apt-RsyncOracleLinux",
+    "frequency":"15 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name OracleLinux --path /mnt/aptlantis/mirrors/OracleLinux -av --delete rsync://mirror.math.princeton.edu/pub/oraclelinux/ /mnt/aptlantis/mirrors/OracleLinux/ >> /mnt/aptlantis/mirrors/logs/oraclelinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncParabolaLinux",
+    "container": "apt-RsyncParabolaLinux",
+    "frequency":"30 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name ParabolaLinux --path /mnt/aptlantis/mirrors/ParabolaLinux -av --delete rsync://mirror.math.princeton.edu/pub/parabola/ /mnt/aptlantis/mirrors/ParabolaLinux/ >> /mnt/aptlantis/mirrors/logs/parabolalinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncParrotOS",
+    "container": "apt-RsyncParrotOS",
+    "frequency":"45 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name ParrotOS --path /mnt/aptlantis/mirrors/ParrotOS -av --delete rsync://deb.parrot.sh/parrot/ /mnt/aptlantis/mirrors/ParrotOS/ >> /mnt/aptlantis/mirrors/logs/parrotos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncPuppyLinux",
+    "container": "apt-RsyncPuppyLinux",
+    "frequency":"0 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name PuppyLinux --path /mnt/aptlantis/mirrors/PuppyLinux -av --delete rsync://mirror.csclub.uwaterloo.ca/puppylinux/ /mnt/aptlantis/mirrors/PuppyLinux/ >> /mnt/aptlantis/mirrors/logs/puppylinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncQubesOS",
+    "container": "apt-RsyncQubesOS",
+    "frequency":"15 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name QubesOS --path /mnt/aptlantis/mirrors/QubesOS rsync-ss --delete rsync://mirrors.nju.edu.cn/qubes/ /mnt/aptlantis/mirrors/QubesOS/ >> /mnt/aptlantis/mirrors/logs/qubesos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncRaspberryPI",
+    "container": "apt-RsyncRaspberryPI",
+    "frequency":"30 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name RaspberryPI --path /mnt/aptlantis/mirrors/RaspberryPI -av --delete rsync://ftp.halifax.rwth-aachen.de/raspberrypi/ /mnt/aptlantis/mirrors/RaspberryPI/ >> /mnt/aptlantis/mirrors/logs/raspberrypi_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncRayvnOS",
+    "container": "apt-RsyncRayvnOS",
+    "frequency":"45 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name RayvnOS --path /mnt/aptlantis/mirrors/RayvnOS -av --delete rsync://ftp.fau.de/ravynos/ /mnt/aptlantis/mirrors/RayvnOS/ >> /mnt/aptlantis/mirrors/logs/rayvnos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncRedcoreLinux",
+    "container": "apt-RsyncRedcoreLinux",
+    "frequency":"0 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name RedcoreLinux --path /mnt/aptlantis/mirrors/RedcoreLinux -av --delete rsync://mirror.yandex.ru/mirrors/redcorelinux/ /mnt/aptlantis/mirrors/RedcoreLinux/ >> /mnt/aptlantis/mirrors/logs/redcorelinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncRockyLinux",
+    "container": "apt-RsyncRockyLinux",
+    "frequency":"15 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name RockyLinux --path /mnt/aptlantis/mirrors/RockyLinux -av --delete rsync://mirror.0xem.ma/rockylinux/ /mnt/aptlantis/mirrors/RockyLinux/ >> /mnt/aptlantis/mirrors/logs/rockylinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncSabayon",
+    "container": "apt-RsyncSabayon",
+    "frequency":"30 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Sabayon --path /mnt/aptlantis/mirrors/Sabayon -av --delete rsync://mirror.math.princeton.edu/pub/sabayon/ /mnt/aptlantis/mirrors/Sabayon/ >> /mnt/aptlantis/mirrors/logs/sabayon_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncSlackware",
+    "container": "apt-RsyncSlackware",
+    "frequency":"45 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Slackware --path /mnt/aptlantis/mirrors/Slackware -av --delete rsync://mirror.netcologne.de/slackware/ /mnt/aptlantis/mirrors/Slackware/ >> /mnt/aptlantis/mirrors/logs/slackware_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncSolusOS",
+    "container": "apt-RsyncSolusOS",
+    "frequency":"0 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name SolusOS --path /mnt/aptlantis/mirrors/SolusOS -av --delete rsync://mirrors.tuna.tsinghua.edu.cn/solus/ /mnt/aptlantis/mirrors/SolusOS/ >> /mnt/aptlantis/mirrors/logs/solusos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncTailsOS",
+    "container": "apt-RsyncTailsOS",
+    "frequency":"15 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name TailsOS --path /mnt/aptlantis/mirrors/TailsOS -av --delete rsync.tails.net::amnesia-archive /mnt/aptlantis/mirrors/TailsOS/ >> /mnt/aptlantis/mirrors/logs/tailsos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncTrisquel",
+    "container": "apt-RsyncTrisquel",
+    "frequency":"30 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Trisquel --path /mnt/aptlantis/mirrors/Trisquel -rlpthi --delete-after --stats rsync.trisquel.org::trisquel.packages /mnt/aptlantis/mirrors/Trisquel/ >> /mnt/aptlantis/mirrors/logs/trisquel_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncTurnkeyLinux",
+    "container": "apt-RsyncTurnkeyLinux",
+    "frequency":"45 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name TurnkeyLinux --path /mnt/aptlantis/mirrors/TurnkeyLinux -av --delete rsync://mirror.turnkeylinux.org/turnkeylinux/ /mnt/aptlantis/mirrors/TurnkeyLinux/ >> /mnt/aptlantis/mirrors/logs/turnkeylinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncUbuntu",
+    "container": "apt-RsyncUbuntu",
+    "frequency":"0 */4 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name Ubuntu --path /mnt/aptlantis/mirrors/Ubuntu -av --delete rsync://mirrors.tuna.tsinghua.edu.cn/ubuntu/ /mnt/aptlantis/mirrors/Ubuntu/ >> /mnt/aptlantis/mirrors/logs/ubuntu_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncVoidLinux",
+    "container": "apt-RsyncVoidLinux",
+    "frequency":"15 */6 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name VoidLinux --path /mnt/aptlantis/mirrors/VoidLinux -av --delete rsync://repo-sync.voidlinux.org/voidlinux/ /mnt/aptlantis/mirrors/VoidLinux/ >> /mnt/aptlantis/mirrors/logs/voidlinux_sync.log 2>&1"
+  },
+  {
+    "name": "apt-RsyncZorinOS",
+    "container": "apt-RsyncZorinOS",
+    "frequency":"30 */12 * * *",
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name ZorinOS --path /mnt/aptlantis/mirrors/ZorinOS -av --delete rsync://mirror.umd.edu/zorin/ /mnt/aptlantis/mirrors/ZorinOS/ >> /mnt/aptlantis/mirrors/logs/zorinos_sync.log 2>&1"
+  },
+  {
+    "name": "apt-LogRotation",
+    "container": "apt-LogRotation",
+    "frequency":"0 0 * * *",
+    "command": "find /mnt/aptlantis/mirrors/logs/ -name \"*.log\" -type f -mtime +7 -delete"
+  },
+  {
+    "name": "apt-RepoSizeChecker",
+    "container": "apt-RepoSizeChecker",
+    "frequency":"0 9 * * *",
+    "command": "/mnt/aptlantis/scripts/needed-projects/repo-size-checker/repo-size-checker.sh >> /mnt/aptlantis/mirrors/logs/repo_size_checker.log 2>&1"
+  },
+  {
+    "name": "apt-GenerateMotd",
+    "container": "apt-GenerateMotd",
+    "frequency":"0 * * * *",
+    "command": "/usr/local/bin/generate-motd.sh >> /mnt/aptlantis/mirrors/logs/generate_motd.log 2>&1"
+  }
+]

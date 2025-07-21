@@ -1,0 +1,32 @@
+ $c[cyan]    _    ____ _____ _        _    _   _ _____ ___ ____  
+    / \  |  _ \_   _| |      / \  | \ | |_   _|_ _/ ___| 
+   / _ \ | |_) || | | |     / _ \ |  \| | | |  | |\___ \ 
+  / ___ \|  __/ | | | |___ / ___ \| |\  | | |  | | ___) |
+ /_/   \_\_|    |_| |_____/_/   \_\_| \_| |_| |___|____/ $c
+
+
+ $c[cyan]$bWelcome to the Aptlantis IRC Server!$r$c
+
+ $c[cyan]This is the official IRC server for Aptlantis - Linux Distribution Mirrors.$c
+
+ $bAbout Aptlantis:$r
+ - A community-driven platform for Linux distribution mirrors
+ - Providing fast and reliable access to Linux distributions
+ - Supporting the open-source community
+
+ $bServer Information:$r
+ - Network: $c[cyan]sudo-apt-Social$c
+ - Server: $c[cyan]ergo.aptlantis.net$c
+
+ $bUseful Channels:$r
+ - $c[cyan]#aptlantis$c - General discussion about Aptlantis
+ - $c[cyan]#help$c - Get help with Linux distributions or the IRC server
+ - $c[cyan]#mirrors$c - Discussion about Linux distribution mirrors
+
+ $bCommands:$r
+ - $c[cyan]/join #channel$c - Join a channel
+ - $c[cyan]/msg NickServ REGISTER password email$c - Register your nickname
+ - $c[cyan]/msg NickServ IDENTIFY password$c - Identify with your registered nickname
+
+ $c[cyan]Thank you for connecting to the Aptlantis IRC network!$c
+ $c[cyan]Visit us at: https://aptlantis.net$c

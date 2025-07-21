@@ -1,0 +1,54 @@
+services:
+  apt-Ergo:
+    init: true
+    image: ghcr.io/ergochat/ergo:stable
+    container_name: apt-Ergo
+    ports:
+      - "6667:6667/tcp"
+      - "6697:6697/tcp"
+    volumes:
+      - data:/ircd
+    deploy:
+      placement:
+        constraints:
+          - "node.role == manager"
+      restart_policy:
+        condition: on-failure
+      replicas: 1
+    networks:
+        - sudo-apt-Social
+
+  apt-TheLounge:
+    image: thelounge/thelounge:latest
+    container_name: apt-TheLounge
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Social
+
+  apt-OllamaGemma3:
+    image: ollama/ollama:latest
+    container_name: apt-OllamaGemma3
+    ports:
+      - "11434:11434"
+    volumes:
+      - data:/ollama
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Social
+# Docker exec ollama run gemma3:1b
+
+
+networks:
+    sudo-apt-Social:
+        driver: bridge
+        attachable: true
+
+# works as is, but you need to create a user in The Lounge
+# localhost is the default for The Lounge
+# Create a user 'aptlantis' with the password 'hh4923' in The Lounge
+# Use a custom MOTD in Ergo
+
+volumes:
+  data:

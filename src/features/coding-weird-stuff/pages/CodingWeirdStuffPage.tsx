@@ -1,9 +1,74 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight } from '../../../shared/icons';
-import { lazy, Suspense } from 'react';
+import React from 'react';
 
-// Dynamically import the AsciiGenerator component to avoid SSR issues with figlet
-const AsciiGenerator = lazy(() => import('../components').then(mod => ({ default: mod.AsciiGenerator })));
+// Container Instructions Component with TOML-like styling
+const ContainerInstructions = () => {
+  return (
+    <div className="bg-gray-100 dark:bg-[#1a1a1a] p-6 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold mb-3 text-cyan-600 dark:text-cyan-400">
+        Containerized App Upload Instructions
+      </h2>
+      <p className="text-gray-600 dark:text-gray-300 mb-4">
+        Follow these guidelines to prepare and upload your containerized application. We accept Docker-based
+        applications that follow our standardized format.
+      </p>
+      
+      <div className="bg-[#0a0a0a] p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4">
+        <pre className="whitespace-pre-wrap">
+          <code>
+            <span className="text-green-400"># Required configuration for your app</span>
+            <br />
+            <span className="text-red-400">[app]</span>
+            <br />
+            <span className="text-blue-300">name</span> = <span className="text-green-300">"your-app-name"</span>
+            <br />
+            <span className="text-blue-300">version</span> = <span className="text-green-300">"1.0.0"</span>
+            <br />
+            <span className="text-blue-300">description</span> = <span className="text-green-300">"Brief description of your application"</span>
+            <br />
+            <br />
+            <span className="text-red-400">[docker]</span>
+            <br />
+            <span className="text-blue-300">base_image</span> = <span className="text-green-300">"node:18-alpine"</span> <span className="text-green-400"># or your preferred base image</span>
+            <br />
+            <span className="text-blue-300">expose_ports</span> = [<span className="text-yellow-300">3000</span>, <span className="text-yellow-300">8080</span>]
+            <br />
+            <br />
+            <span className="text-red-400">[dependencies]</span>
+            <br />
+            <span className="text-blue-300">required</span> = [<span className="text-green-300">"dependency1"</span>, <span className="text-green-300">"dependency2"</span>]
+            <br />
+            <br />
+            <span className="text-red-400">[environment]</span>
+            <br />
+            <span className="text-blue-300">NODE_ENV</span> = <span className="text-green-300">"production"</span>
+            <br />
+            <span className="text-blue-300">LOG_LEVEL</span> = <span className="text-green-300">"info"</span>
+          </code>
+        </pre>
+      </div>
+      
+      <h3 className="text-xl font-semibold mb-2 text-cyan-600 dark:text-cyan-400">
+        Submission Requirements
+      </h3>
+      <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300 mb-4">
+        <li>Include a valid Dockerfile in your project root</li>
+        <li>Ensure your app runs in a containerized environment</li>
+        <li>Provide clear documentation for setup and usage</li>
+        <li>Include health check endpoints for monitoring</li>
+        <li>Follow security best practices for container images</li>
+      </ul>
+      
+      <p className="text-gray-600 dark:text-gray-300">
+        For more detailed instructions and examples, please refer to our 
+        <a href="#" className="text-cyan-600 dark:text-cyan-400 hover:underline ml-1">
+          containerization documentation
+        </a>.
+      </p>
+    </div>
+  );
+};
 
 // Sample data for weird coding projects
 const weirdProjects = [
@@ -157,11 +222,9 @@ const CodingWeirdStuffPage = () => {
         </div>
       </div>
 
-      {/* ASCII Generator Section */}
+      {/* Containerized App Upload Instructions */}
       <div className="mb-8">
-        <Suspense fallback={<div className="p-4 text-center">Loading ASCII Generator...</div>}>
-          <AsciiGenerator />
-        </Suspense>
+        <ContainerInstructions />
       </div>
 
       {/* About Section */}
@@ -180,10 +243,7 @@ const CodingWeirdStuffPage = () => {
         </p>
       </div>
 
-      {/* Optional Footer */}
-      <div className="mt-8 text-center text-gray-500 dark:text-gray-400 text-sm">
-        Proudly hosted by APTlantis. Weird is the point.
-      </div>
+
     </div>
   );
 };
