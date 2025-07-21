@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer - APTlantis</title>
+  <style>
+    :root {
+      --bg-gradient-from: #1a1a1a;
+      --bg-gradient-to: #0a0a0a;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --text-tertiary: #999999;
+      --accent-cyan: #06b6d4;
+      --accent-purple: #9333ea;
+      --accent-green: #10b981;
+      --accent-blue: #3b82f6;
+      --bg-card: #0a0a0a;
+      --border-color: rgba(6, 182, 212, 0.3);
+      --nav-bg: #0a0a0a;
+      --nav-text: #ffffff;
+      --nav-hover: #06b6d4;
+      --breadcrumb-bg: rgba(10, 10, 10, 0.8);
+      --breadcrumb-text: #cccccc;
+      --breadcrumb-active: #06b6d4;
+      --footer-bg: #0a0a0a;
+      --footer-text: #cccccc;
+      --footer-link: #06b6d4;
+      --form-bg: rgba(10, 10, 10, 0.8);
+      --form-input-bg: rgba(30, 30, 30, 0.8);
+      --form-input-border: rgba(6, 182, 212, 0.3);
+      --form-input-focus: rgba(6, 182, 212, 0.7);
+      --form-button-bg: #06b6d4;
+      --form-button-hover: #0891b2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(to bottom right, var(--bg-gradient-from), var(--bg-gradient-to));
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Site Header and Navigation Styles */
+    .site-header {
+      background-color: var(--nav-bg);
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .home-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .nav-logo {
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: 20px;
+    }
+
+    .main-nav a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .main-nav a:hover {
+      color: var(--nav-hover);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Breadcrumbs Styles */
+    .breadcrumbs {
+      background-color: var(--breadcrumb-bg);
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .breadcrumbs ul {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      list-style: none;
+      padding: 0;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .breadcrumbs li:not(:last-child)::after {
+      content: "›";
+      margin-left: 10px;
+      color: var(--text-tertiary);
+    }
+
+    .breadcrumbs a {
+      color: var(--breadcrumb-text);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--breadcrumb-active);
+    }
+
+    .breadcrumbs li:last-child {
+      color: var(--breadcrumb-active);
+      font-weight: 500;
+    }
+
+    /* Form Styles */
+    .form-container {
+      background-color: var(--form-bg);
+      border-radius: 8px;
+      padding: 30px;
+      margin-top: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .form-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: var(--accent-cyan);
+    }
+
+    .form-description {
+      margin-bottom: 30px;
+      color: var(--text-secondary);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-description-text {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--form-input-bg);
+      border: 1px solid var(--form-input-border);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 16px;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--form-input-focus);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .checkbox-group,
+    .radio-group {
+      margin-top: 10px;
+    }
+
+    .checkbox-item,
+    .radio-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .checkbox-input,
+    .radio-input {
+      margin-right: 10px;
+    }
+
+    .form-button {
+      background-color: var(--form-button-bg);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .form-button:hover {
+      background-color: var(--form-button-hover);
+    }
+
+    .required-field::after {
+      content: "*";
+      color: #ef4444;
+      margin-left: 4px;
+    }
+
+    .success-message {
+      background-color: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--accent-green);
+      color: var(--accent-green);
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    /* Footer Styles */
+    .site-footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 30px 20px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-section h3 {
+      color: var(--accent-cyan);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section a {
+      color: var(--footer-text);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--footer-link);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .breadcrumbs ul {
+        flex-wrap: wrap;
+      }
+
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="home-link">
+        <img src="assets/images/icon.svg" alt="APTlantis Logo" class="nav-logo">
+        <span>APTlantis</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="docs/readme.md" download>About</a></li>
+          <li><a href="docs/faq.md" download>FAQ</a></li>
+          <li><a href="docs/rsync-instructions.md" download>Rsync Guide</a></li>
+          <li><a href="docs/what-are-launchpacks.md" download>Launchpacks</a></li>
+          <li><a href="museum.html">Museum</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumbs">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li>Volunteer</li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <div class="form-container">
+      <h1 class="form-title">Volunteer Application</h1>
+      <p class="form-description">
+        Thank you for your interest in volunteering with APTlantis! We're always looking for passionate individuals to help us maintain and improve our services. Please fill out the form below to apply.
+      </p>
+
+      <div id="success-message" class="success-message">
+        Your application has been submitted successfully! We'll review your information and get back to you soon.
+      </div>
+
+      <form id="volunteer-form">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="fullName" class="form-label required-field">Full Name</label>
+          <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Email Address -->
+        <div class="form-group">
+          <label for="email" class="form-label required-field">Email Address</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="text" id="phone" name="phone" class="form-input" placeholder="Enter your phone number (optional)">
+        </div>
+
+        <!-- Availability -->
+        <div class="form-group">
+          <label for="availability" class="form-label required-field">Availability</label>
+          <p class="form-description-text">How much time can you dedicate to volunteering?</p>
+          <select id="availability" name="availability" class="form-select" required>
+            <option value="">Select your availability</option>
+            <option value="fullTime">Full-time (40+ hours/week)</option>
+            <option value="partTime">Part-time (20-39 hours/week)</option>
+            <option value="limited">Limited (5-19 hours/week)</option>
+            <option value="occasional">Occasional (less than 5 hours/week)</option>
+          </select>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="form-group">
+          <label for="skills" class="form-label required-field">Technical Skills</label>
+          <p class="form-description-text">What is your primary technical skill?</p>
+          <select id="skills" name="skills" class="form-select" required>
+            <option value="">Select your primary technical skill</option>
+            <option value="sysadmin">System Administration</option>
+            <option value="networking">Networking</option>
+            <option value="webDev">Web Development</option>
+            <option value="devops">DevOps</option>
+            <option value="security">Security</option>
+            <option value="documentation">Documentation</option>
+            <option value="qa">Quality Assurance</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Other Skills -->
+        <div class="form-group">
+          <label for="otherSkills" class="form-label">Other Skills</label>
+          <p class="form-description-text">List any other skills that might be relevant to your volunteer work</p>
+          <textarea id="otherSkills" name="otherSkills" class="form-textarea" placeholder="Please list any other relevant skills or expertise"></textarea>
+        </div>
+
+        <!-- Linux Experience -->
+        <div class="form-group">
+          <label for="experience" class="form-label required-field">Linux Experience</label>
+          <p class="form-description-text">How would you rate your experience with Linux?</p>
+          <select id="experience" name="experience" class="form-select" required>
+            <option value="">Select your experience level</option>
+            <option value="beginner">Beginner (less than 1 year)</option>
+            <option value="intermediate">Intermediate (1-3 years)</option>
+            <option value="advanced">Advanced (3-5 years)</option>
+            <option value="expert">Expert (5+ years)</option>
+          </select>
+        </div>
+
+        <!-- Familiar Distributions -->
+        <div class="form-group">
+          <label for="distros" class="form-label">Familiar Distributions</label>
+          <p class="form-description-text">Which Linux distributions are you most familiar with?</p>
+          <textarea id="distros" name="distros" class="form-textarea" placeholder="List Linux distributions you are familiar with"></textarea>
+        </div>
+
+        <!-- Areas of Interest -->
+        <div class="form-group">
+          <label class="form-label required-field">Areas of Interest</label>
+          <p class="form-description-text">Which areas are you interested in volunteering for?</p>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="mirrorMaintenance" name="interests" value="mirrorMaintenance" class="checkbox-input">
+              <label for="mirrorMaintenance">Mirror Maintenance</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="webDevelopment" name="interests" value="webDevelopment" class="checkbox-input">
+              <label for="webDevelopment">Web Development</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="documentation" name="interests" value="documentation" class="checkbox-input">
+              <label for="documentation">Documentation</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="communitySupport" name="interests" value="communitySupport" class="checkbox-input">
+              <label for="communitySupport">Community Support</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="testing" name="interests" value="testing" class="checkbox-input">
+              <label for="testing">Testing and QA</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="security" name="interests" value="security" class="checkbox-input">
+              <label for="security">Security</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motivation -->
+        <div class="form-group">
+          <label for="motivation" class="form-label required-field">Motivation</label>
+          <p class="form-description-text">Why do you want to volunteer with APTlantis?</p>
+          <textarea id="motivation" name="motivation" class="form-textarea" placeholder="Tell us why you want to volunteer with APTlantis" required></textarea>
+        </div>
+
+        <!-- Commitment Period -->
+        <div class="form-group">
+          <label class="form-label required-field">Commitment Period</label>
+          <p class="form-description-text">How long do you expect to be able to volunteer?</p>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" id="shortTerm" name="commitment" value="shortTerm" class="radio-input" required>
+              <label for="shortTerm">Short-term (1-3 months)</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="mediumTerm" name="commitment" value="mediumTerm" class="radio-input">
+              <label for="mediumTerm">Medium-term (3-6 months)</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="longTerm" name="commitment" value="longTerm" class="radio-input">
+              <label for="longTerm">Long-term (6+ months)</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Previous Volunteer Experience -->
+        <div class="form-group">
+          <label for="previousExperience" class="form-label">Previous Volunteer Experience</label>
+          <p class="form-description-text">Have you volunteered for other open-source projects before? If so, please describe your experience.</p>
+          <textarea id="previousExperience" name="previousExperience" class="form-textarea" placeholder="Describe any previous volunteer experience"></textarea>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="form-group">
+          <label for="additionalInfo" class="form-label">Additional Information</label>
+          <p class="form-description-text">Is there anything else you would like to share with us?</p>
+          <textarea id="additionalInfo" name="additionalInfo" class="form-textarea" placeholder="Any other information you would like to share"></textarea>
+        </div>
+
+        <button type="submit" class="form-button">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>About APTlantis</h3>
+        <p>APTlantis provides lightning-fast access to Linux repos, ISO downloads, and open-source archives. Our mission is to support the global FOSS community with reliable, high-speed mirrors.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="docs/readme.md" download>About</a></li>
+          <li><a href="docs/faq.md" download>FAQ</a></li>
+          <li><a href="docs/rsync-instructions.md" download>Rsync Guide</a></li>
+          <li><a href="docs/what-are-launchpacks.md" download>Launchpacks</a></li>
+          <li><a href="museum.html">Museum</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Popular Distros</h3>
+        <ul>
+          <li><a href="index.html#debian">Debian</a></li>
+          <li><a href="index.html#ubuntu">Ubuntu</a></li>
+          <li><a href="index.html#linuxmint">Linux Mint</a></li>
+          <li><a href="index.html#almalinux">AlmaLinux</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Have questions or need help?</p>
+        <p>Email: <a href="mailto:support@aptlantis.net">support@aptlantis.net</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 APTlantis. All rights reserved.</p>
+      <p>Powered by <a href="https://www.hetzner.com" target="_blank" rel="noopener">Hetzner</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('volunteer-form');
+      const successMessage = document.getElementById('success-message');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // In a real implementation, this would send the form data to a server
+        // For now, we'll just show the success message
+        successMessage.style.display = 'block';
+        form.reset();
+
+        // Scroll to the top of the form to show the success message
+        successMessage.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

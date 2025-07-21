@@ -1,0 +1,67 @@
+{
+  "theme": "Media & Creative Tools",
+  "links": [
+    {
+      "title": "Krita",
+      "url": "https://krita.org/",
+      "description": "Professional free and open-source painting program for digital artists, illustrators, and concept designers."
+    },
+    {
+      "title": "GIMP",
+      "url": "https://www.gimp.org/",
+      "description": "The GNU Image Manipulation Program—powerful for photo retouching, image editing, and composition."
+    },
+    {
+      "title": "Inkscape",
+      "url": "https://inkscape.org/",
+      "description": "Free and open-source vector graphics editor for illustrators and designers—ideal for SVG workflows."
+    },
+    {
+      "title": "Kdenlive",
+      "url": "https://kdenlive.org/",
+      "description": "A robust, multi-track non-linear video editor that works great on Linux and supports a wide range of codecs and effects."
+    },
+    {
+      "title": "Audacity",
+      "url": "https://www.audacityteam.org/",
+      "description": "Popular multi-track audio editor and recorder used for podcasts, music editing, and voiceovers."
+    },
+    {
+      "title": "LMMS",
+      "url": "https://lmms.io/",
+      "description": "A free cross-platform music production suite—create beats, synths, and full tracks with MIDI support."
+    }
+  ],
+  "tips": [
+    {
+      "title": "Use Flatpak for Creative Apps",
+      "content": "Creative tools like Krita and Inkscape often ship the latest versions as Flatpaks. They're sandboxed and easy to update.",
+      "category": "Package Management"
+    },
+    {
+      "title": "Color Calibrate Your Monitor",
+      "content": "For accurate digital painting or video editing, use tools like DisplayCAL and a hardware colorimeter.",
+      "category": "Professional Tip"
+    },
+    {
+      "title": "Edit Non-Destructively",
+      "content": "Use layer-based editing in apps like GIMP and Krita to retain flexibility when creating or retouching images.",
+      "category": "Best Practice"
+    },
+    {
+      "title": "Try JACK Audio for Pro Audio",
+      "content": "Use JACK with tools like Ardour or Carla for low-latency, professional-grade Linux audio production setups.",
+      "category": "Advanced"
+    },
+    {
+      "title": "Use SVGs for Scalable Artwork",
+      "content": "Vector formats like SVG are ideal for logos, icons, and UI design. Inkscape is a great choice for editing them.",
+      "category": "Design Tip"
+    },
+    {
+      "title": "Keep Backups of Your Projects",
+      "content": "Creative files are often irreplaceable. Use Timeshift, rsync, or cloud backup to keep your work safe.",
+      "category": "Backup"
+    }
+  ]
+}

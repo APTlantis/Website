@@ -1,0 +1,9 @@
+tunnel: mirror_it_all
+credentials-file: /home/herb/.cloudflared/mirror_it_all.json
+
+ingress:
+  - hostname: mirror-it.aptlantis.net
+    service: http://localhost:80
+
+  - service: http_status:404
+

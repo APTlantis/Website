@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museum - APTlantis</title>
+  <style>
+    :root {
+      --bg-gradient-from: #1a1a1a;
+      --bg-gradient-to: #0a0a0a;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --text-tertiary: #999999;
+      --accent-cyan: #06b6d4;
+      --accent-purple: #9333ea;
+      --accent-green: #10b981;
+      --accent-blue: #3b82f6;
+      --bg-card: #0a0a0a;
+      --border-color: rgba(6, 182, 212, 0.3);
+      --nav-bg: #0a0a0a;
+      --nav-text: #ffffff;
+      --nav-hover: #06b6d4;
+      --breadcrumb-bg: rgba(10, 10, 10, 0.8);
+      --breadcrumb-text: #cccccc;
+      --breadcrumb-active: #06b6d4;
+      --footer-bg: #0a0a0a;
+      --footer-text: #cccccc;
+      --footer-link: #06b6d4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(to bottom right, var(--bg-gradient-from), var(--bg-gradient-to));
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: contain;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 5px;
+    }
+
+    .title-container {
+      flex: 1;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .subtitle {
+      color: var(--accent-cyan);
+      font-size: 16px;
+    }
+
+    .museum-badge {
+      background-color: var(--accent-purple);
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-left: 15px;
+      display: inline-flex;
+      align-items: center;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .section {
+      background-color: var(--bg-card);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      color: var(--accent-cyan);
+      font-size: 20px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .button-primary {
+      background-color: var(--accent-cyan);
+      color: white;
+    }
+
+    .button-primary:hover {
+      background-color: #0891b2;
+    }
+
+    .button-secondary {
+      background-color: var(--accent-green);
+      color: white;
+    }
+
+    .button-secondary:hover {
+      background-color: #059669;
+    }
+
+    .button-back {
+      background-color: var(--accent-blue);
+      color: white;
+    }
+
+    .button-back:hover {
+      background-color: #2563eb;
+    }
+
+    .museum-dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .dashboard-item {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .dashboard-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      border-color: var(--accent-cyan);
+    }
+
+    .dashboard-item-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: var(--accent-cyan);
+    }
+
+    /* Site Header and Navigation Styles */
+    .site-header {
+      background-color: var(--nav-bg);
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .home-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .nav-logo {
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: 20px;
+    }
+
+    .main-nav a {
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .main-nav a:hover {
+      color: var(--nav-hover);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Breadcrumbs Styles */
+    .breadcrumbs {
+      background-color: var(--breadcrumb-bg);
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .breadcrumbs ul {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      list-style: none;
+      padding: 0;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .breadcrumbs li:not(:last-child)::after {
+      content: "›";
+      margin-left: 10px;
+      color: var(--text-tertiary);
+    }
+
+    .breadcrumbs a {
+      color: var(--breadcrumb-text);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--breadcrumb-active);
+    }
+
+    .breadcrumbs li:last-child {
+      color: var(--breadcrumb-active);
+      font-weight: 500;
+    }
+
+    /* Footer Styles */
+    .site-footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 30px 20px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-section h3 {
+      color: var(--accent-cyan);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section a {
+      color: var(--footer-text);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--footer-link);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .breadcrumbs ul {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="home-link">
+        <img src="assets/images/icon.svg" alt="APTlantis Logo" class="nav-logo">
+        <span>APTlantis</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="docs/readme.md" download>About</a></li>
+          <li><a href="docs/faq.md" download>FAQ</a></li>
+          <li><a href="docs/rsync-instructions.md" download>Rsync Guide</a></li>
+          <li><a href="docs/what-are-launchpacks.md" download>Launchpacks</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumbs">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li>Museum</li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <div id="header" class="header">
+      <img id="logo" src="/placeholder.svg" alt="Distribution logo" class="logo">
+      <div class="title-container">
+        <h1 class="title">
+          <span id="title">Museum</span>
+          <span class="museum-badge">Museum</span>
+        </h1>
+        <div id="subtitle" class="subtitle">Explore historical operating systems</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <a href="/" class="button button-back">← Back to Mirror Dashboard</a>
+        <h2 class="section-title">Museum Dashboard</h2>
+        <p>Welcome to the APTlantis Museum! Explore our collection of historical operating systems.</p>
+        <div class="museum-dashboard">
+          <a href="/museum.html?distro=templeos" class="dashboard-item">
+            <div class="dashboard-item-title">TempleOS</div>
+            <p>A public domain operating system created by Terry A. Davis.</p>
+          </a>
+          <a href="/museum.html?distro=phoenixos" class="dashboard-item">
+            <div class="dashboard-item-title">PhoenixOS</div>
+            <p>A discontinued operating system that aimed to combine the best of Linux and Android.</p>
+          </a>
+          <a href="/museum.html?distro=sparrow" class="dashboard-item">
+            <div class="dashboard-item-title">Sparrow</div>
+            <p>A lightweight, minimalist Linux distribution focused on simplicity and speed.</p>
+          </a>
+          <a href="/museum.html?distro=hoppi" class="dashboard-item">
+            <div class="dashboard-item-title">Hoppi</div>
+            <p>An educational Linux distribution designed for children and schools.</p>
+          </a>
+          <a href="/museum.html?distro=zenith" class="dashboard-item">
+            <div class="dashboard-item-title">Zenith</div>
+            <p>A visually stunning Linux distribution focused on multimedia creation and consumption.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">About the Museum</h2>
+        <p>The APTlantis Museum is dedicated to preserving and showcasing historical operating systems that have made significant contributions to computing history. These systems may no longer be actively maintained, but they represent important milestones in the evolution of operating systems.</p>
+        <p style="margin-top: 15px;">Each museum entry includes historical context, videos, articles, and downloadable ISO files for educational and archival purposes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>About APTlantis</h3>
+        <p>APTlantis provides lightning-fast access to Linux repos, ISO downloads, and open-source archives. Our mission is to support the global FOSS community with reliable, high-speed mirrors.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="docs/readme.md" download>About</a></li>
+          <li><a href="docs/faq.md" download>FAQ</a></li>
+          <li><a href="docs/rsync-instructions.md" download>Rsync Guide</a></li>
+          <li><a href="docs/what-are-launchpacks.md" download>Launchpacks</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Popular Distros</h3>
+        <ul>
+          <li><a href="index.html#debian">Debian</a></li>
+          <li><a href="index.html#ubuntu">Ubuntu</a></li>
+          <li><a href="index.html#linuxmint">Linux Mint</a></li>
+          <li><a href="index.html#almalinux">AlmaLinux</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Have questions or need help?</p>
+        <p>Email: <a href="mailto:support@aptlantis.net">support@aptlantis.net</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 APTlantis. All rights reserved.</p>
+      <p>Powered by <a href="https://www.hetzner.com" target="_blank" rel="noopener">Hetzner</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple script to handle the distro parameter
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const distroId = urlParams.get('distro');
+
+      if (distroId) {
+        // If a specific distro is requested, redirect to the distro details page
+        // This is a simplified approach - in a real implementation, we would fetch the distro data
+        // and display it on this page
+        window.location.href = `/distro-details.html?museum=true&distro=${distroId}`;
+      }
+    });
+  </script>
+</body>
+</html>

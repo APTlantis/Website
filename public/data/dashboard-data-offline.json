@@ -1,0 +1,67 @@
+{
+  "theme": "Offline & Survival Kits",
+  "links": [
+    {
+      "title": "Kiwix",
+      "url": "https://www.kiwix.org/",
+      "description": "Offline reader for web content—download and browse entire websites like Wikipedia or Stack Overflow without Internet access."
+    },
+    {
+      "title": "Zotero",
+      "url": "https://www.zotero.org/",
+      "description": "Free tool to collect, organize, cite, and share research, with strong offline capabilities and local libraries."
+    },
+    {
+      "title": "Project Gutenberg",
+      "url": "https://www.gutenberg.org/",
+      "description": "Over 70,000 free eBooks you can download and store locally—great for reading and archival projects."
+    },
+    {
+      "title": "LibreOffice",
+      "url": "https://www.libreoffice.org/",
+      "description": "Powerful open-source office suite—word processing, spreadsheets, presentations—all fully offline-capable."
+    },
+    {
+      "title": "Joplin",
+      "url": "https://joplinapp.org/",
+      "description": "Markdown-based note-taking and to-do app with full offline sync and encryption support."
+    },
+    {
+      "title": "ArchiveBox",
+      "url": "https://archivebox.io/",
+      "description": "Self-hosted web archiving solution to collect, save, and browse URLs offline, including full HTML snapshots."
+    }
+  ],
+  "tips": [
+    {
+      "title": "Build a Self-Contained Toolkit",
+      "content": "Use tools like Ventoy or GRUB2 to bundle multiple rescue ISOs, documentation, and apps onto a single USB drive.",
+      "category": "Storage"
+    },
+    {
+      "title": "Mirror What You Rely On",
+      "content": "Sync copies of your most-used Linux repos, Flatpak apps, and docs using rsync for offline fallback or bandwidth-limited environments.",
+      "category": "Mirroring"
+    },
+    {
+      "title": "Use Joplin with Local Sync",
+      "content": "You can run Joplin without cloud sync—use a shared folder or USB stick to move your notes between devices securely.",
+      "category": "Notes"
+    },
+    {
+      "title": "Download Wikipedia with Kiwix",
+      "content": "Kiwix lets you download entire copies of Wikipedia or Wiktionary to a USB stick or internal drive—great for study or reference without Internet.",
+      "category": "Knowledge"
+    },
+    {
+      "title": "Include System Repair Tools",
+      "content": "Don’t forget to add tools like GParted, Clonezilla, and SystemRescue to your offline kit for system emergencies.",
+      "category": "Recovery"
+    },
+    {
+      "title": "Store Digital Books Locally",
+      "content": "Use tools like Calibre to organize and read DRM-free eBooks offline. Works well with Project Gutenberg collections.",
+      "category": "Reading"
+    }
+  ]
+}

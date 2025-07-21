@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBASIC Volunteer Form</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000080; /* QBASIC blue background */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .qbasic-header {
+            background-color: #000080;
+            color: #ffffff;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .qbasic-menu {
+            display: flex;
+        }
+
+        .qbasic-menu-item {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .qbasic-content {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .qbasic-footer {
+            background-color: #000080;
+            color: #ffffff;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #ffffff;
+        }
+
+        .qbasic-form {
+            margin-top: 10px;
+        }
+
+        .qbasic-line {
+            margin-bottom: 5px;
+            display: flex;
+        }
+
+        .qbasic-line-number {
+            color: #aaaaaa;
+            width: 40px;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .qbasic-keyword {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .qbasic-string {
+            color: #ffff00; /* Yellow for strings */
+        }
+
+        .qbasic-comment {
+            color: #00ff00; /* Green for comments */
+        }
+
+        .qbasic-input {
+            background-color: #000080;
+            color: #ffffff;
+            border: none;
+            border-bottom: 1px solid #ffffff;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            width: 300px;
+            margin-left: 5px;
+        }
+
+        .qbasic-input:focus {
+            background-color: #0000aa;
+        }
+
+        .qbasic-select {
+            background-color: #000080;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            width: 300px;
+            margin-left: 5px;
+        }
+
+        .qbasic-textarea {
+            background-color: #000080;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            width: 300px;
+            height: 60px;
+            margin-left: 5px;
+            resize: none;
+        }
+
+        .qbasic-checkbox-container {
+            display: flex;
+            flex-direction: column;
+            margin-left: 5px;
+        }
+
+        .qbasic-checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+        }
+
+        .qbasic-radio-container {
+            display: flex;
+            flex-direction: column;
+            margin-left: 5px;
+        }
+
+        .qbasic-radio-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+        }
+
+        .qbasic-button {
+            background-color: #000080;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            font-family: 'Courier New', monospace;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .qbasic-button:hover {
+            background-color: #0000aa;
+        }
+
+        .qbasic-result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ffffff;
+            display: none;
+        }
+
+        .qbasic-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 15px;
+            background-color: #ffffff;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="qbasic-header">
+        <div>QB64 - VOLUNTEER.BAS</div>
+        <div class="qbasic-menu">
+            <div class="qbasic-menu-item">File</div>
+            <div class="qbasic-menu-item">Edit</div>
+            <div class="qbasic-menu-item">View</div>
+            <div class="qbasic-menu-item">Run</div>
+            <div class="qbasic-menu-item">Help</div>
+        </div>
+    </div>
+
+    <div class="qbasic-content">
+        <div id="intro-screen">
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">10</div>
+                <div><span class="qbasic-keyword">CLS</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">20</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"APTlantis Volunteer Application"</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">30</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"================================"</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">40</div>
+                <div><span class="qbasic-keyword">PRINT</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">50</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Thank you for your interest in volunteering with APTlantis!"</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">60</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"We're always looking for passionate individuals to help maintain"</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">70</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"our mirrors, improve our website, and support the open-source community."</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">80</div>
+                <div><span class="qbasic-keyword">PRINT</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">90</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Please fill out the following form to apply."</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">100</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Press any key to continue..."</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">110</div>
+                <div><span class="qbasic-keyword">A$ = INPUT$(1)</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">120</div>
+                <div><span class="qbasic-keyword">GOSUB</span> 1000 <span class="qbasic-comment">' Start the form</span></div>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <button id="start-form" class="qbasic-button">Press any key to continue...</button>
+            </div>
+        </div>
+
+        <div id="form-screen" class="hidden">
+            <form id="volunteer-form" class="qbasic-form">
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1000</div>
+                    <div><span class="qbasic-keyword">CLS</span></div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1010</div>
+                    <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"APTlantis Volunteer Application Form"</span></div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1020</div>
+                    <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"=================================="</span></div>
+                </div>
+
+                <!-- Full Name -->
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1030</div>
+                    <div>
+                        <span class="qbasic-keyword">INPUT</span> <span class="qbasic-string">"Full Name (required): "</span><span class="qbasic-keyword">;</span> fullName$
+                        <input type="text" id="fullName" name="fullName" class="qbasic-input" required placeholder="Enter your full name">
+                    </div>
+                </div>
+
+                <!-- Email Address -->
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1040</div>
+                    <div>
+                        <span class="qbasic-keyword">INPUT</span> <span class="qbasic-string">"Email Address (required): "</span><span class="qbasic-keyword">;</span> email$
+                        <input type="email" id="email" name="email" class="qbasic-input" required placeholder="Enter your email address">
+                    </div>
+                </div>
+
+                <!-- Availability -->
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1050</div>
+                    <div>
+                        <span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Availability (required):"</span>
+                    </div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1060</div>
+                    <div>
+                        <span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"1) Full-time (40+ hours/week)"</span>
+                    </div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1070</div>
+                    <div>
+                        <span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"2) Part-time (20-39 hours/week)"</span>
+                    </div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1080</div>
+                    <div>
+                        <span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"3) Limited (5-19 hours/week)"</span>
+                    </div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1090</div>
+                    <div>
+                        <span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"4) Occasional (less than 5 hours/week)"</span>
+                    </div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1100</div>
+                    <div>
+                        <span class="qbasic-keyword">INPUT</span> <span class="qbasic-string">"Enter your choice (1-4): "</span><span class="qbasic-keyword">;</span> availability%
+                        <select id="availability" name="availability" class="qbasic-select" required>
+                            <option value="">Select your availability</option>
+                            <option value="fullTime">Full-time (40+ hours/week)</option>
+                            <option value="partTime">Part-time (20-39 hours/week)</option>
+                            <option value="limited">Limited (5-19 hours/week)</option>
+                            <option value="occasional">Occasional (less than 5 hours/week)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Areas of Interest -->
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1110</div>
+                    <div>
+                        <span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Areas of Interest (required):"</span>
+                    </div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1120</div>
+                    <div>
+                        <span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Enter Y/N for each option:"</span>
+                    </div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1130</div>
+                    <div>
+                        <span class="qbasic-keyword">INPUT</span> <span class="qbasic-string">"Mirror Maintenance (Y/N): "</span><span class="qbasic-keyword">;</span> interest1$
+                        <div class="qbasic-checkbox-container">
+                            <div class="qbasic-checkbox-item">
+                                <input type="checkbox" id="interests-mirrorMaintenance" name="interests" value="mirrorMaintenance">
+                                <label for="interests-mirrorMaintenance">Mirror Maintenance</label>
+                            </div>
+                            <div class="qbasic-checkbox-item">
+                                <input type="checkbox" id="interests-webDevelopment" name="interests" value="webDevelopment">
+                                <label for="interests-webDevelopment">Web Development</label>
+                            </div>
+                            <div class="qbasic-checkbox-item">
+                                <input type="checkbox" id="interests-documentation" name="interests" value="documentation">
+                                <label for="interests-documentation">Documentation</label>
+                            </div>
+                            <div class="qbasic-checkbox-item">
+                                <input type="checkbox" id="interests-communitySupport" name="interests" value="communitySupport">
+                                <label for="interests-communitySupport">Community Support</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Motivation -->
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1140</div>
+                    <div>
+                        <span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Motivation (required):"</span>
+                    </div>
+                </div>
+                <div class="qbasic-line">
+                    <div class="qbasic-line-number">1150</div>
+                    <div>
+                        <span class="qbasic-keyword">LINE INPUT</span> <span class="qbasic-string">"Why do you want to volunteer with APTlantis? "</span><span class="qbasic-keyword">;</span> motivation$
+                        <textarea id="motivation" name="motivation" class="qbasic-textarea" required placeholder="Tell us why you want to volunteer with APTlantis"></textarea>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button type="submit" id="submit-form" class="qbasic-button">SUBMIT APPLICATION</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="success-screen" class="hidden">
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">3000</div>
+                <div><span class="qbasic-keyword">CLS</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">3010</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Thank you for your application!"</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">3020</div>
+                <div><span class="qbasic-keyword">PRINT</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">3030</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Your volunteer application has been submitted successfully."</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">3040</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"We will review your application and get back to you soon!"</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">3050</div>
+                <div><span class="qbasic-keyword">PRINT</span></div>
+            </div>
+            <div class="qbasic-line">
+                <div class="qbasic-line-number">3060</div>
+                <div><span class="qbasic-keyword">PRINT</span> <span class="qbasic-string">"Press any key to restart..."</span></div>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button id="restart-form" class="qbasic-button">Press any key to restart...</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="qbasic-footer">
+        <div>F1=Help F5=Run F10=Menu</div>
+        <div>Line: 1 Col: 1</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startFormButton = document.getElementById('start-form');
+            const submitFormButton = document.getElementById('submit-form');
+            const restartFormButton = document.getElementById('restart-form');
+
+            const introScreen = document.getElementById('intro-screen');
+            const formScreen = document.getElementById('form-screen');
+            const successScreen = document.getElementById('success-screen');
+
+            startFormButton.addEventListener('click', function() {
+                introScreen.classList.add('hidden');
+                formScreen.classList.remove('hidden');
+            });
+
+            document.getElementById('volunteer-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                formScreen.classList.add('hidden');
+                successScreen.classList.remove('hidden');
+            });
+
+            restartFormButton.addEventListener('click', function() {
+                successScreen.classList.add('hidden');
+                introScreen.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

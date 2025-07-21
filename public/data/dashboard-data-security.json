@@ -1,0 +1,67 @@
+{
+  "theme": "Security & Privacy",
+  "links": [
+    {
+      "title": "Qubes OS",
+      "url": "https://www.qubes-os.org/",
+      "description": "A security-focused operating system that uses Xen-based virtualization to compartmentalize tasks into isolated domains."
+    },
+    {
+      "title": "Tails OS",
+      "url": "https://tails.net/",
+      "description": "A live Linux system focused on privacy and anonymity, using Tor and leaving no trace on the machine you use."
+    },
+    {
+      "title": "Whonix",
+      "url": "https://www.whonix.org/",
+      "description": "A desktop operating system designed for anonymity, utilizing Tor and virtualization to prevent IP leaks."
+    },
+    {
+      "title": "Tor Project",
+      "url": "https://www.torproject.org/",
+      "description": "Official site for the Tor network and tools, including the Tor Browser for anonymous web access."
+    },
+    {
+      "title": "Proton VPN",
+      "url": "https://protonvpn.com/",
+      "description": "A high-privacy VPN service from the makers of ProtonMail, offering a trustworthy free tier and no-logs policy."
+    },
+    {
+      "title": "Linux Security Checklist",
+      "url": "https://github.com/lfit/itpol/blob/master/linux-workstation-security.md",
+      "description": "Community-maintained hardening checklist for Linux desktops and laptops."
+    }
+  ],
+  "tips": [
+    {
+      "title": "Enable Full Disk Encryption",
+      "content": "Use LUKS or VeraCrypt to encrypt your drive, especially on laptops. This protects your data in case the device is lost or stolen.",
+      "category": "Encryption"
+    },
+    {
+      "title": "Use a Password Manager",
+      "content": "Avoid reusing passwords. Use open-source tools like Bitwarden or KeePassXC to securely store and manage your credentials.",
+      "category": "Account Security"
+    },
+    {
+      "title": "Avoid Using Root",
+      "content": "Run as a regular user and only use sudo when necessary. This reduces the chance of system-wide damage or compromise.",
+      "category": "System Safety"
+    },
+    {
+      "title": "Secure SSH Access",
+      "content": "Use SSH keys instead of passwords, disable root login, and change the default port to harden SSH access.",
+      "category": "Networking"
+    },
+    {
+      "title": "Update Regularly",
+      "content": "Security patches are critical. Enable automatic security updates if your distro supports it.",
+      "category": "Maintenance"
+    },
+    {
+      "title": "Use AppArmor or SELinux",
+      "content": "Mandatory access control systems like AppArmor or SELinux confine apps and reduce damage from misbehaving or malicious software.",
+      "category": "Advanced"
+    }
+  ]
+}

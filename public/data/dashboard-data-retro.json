@@ -1,0 +1,67 @@
+{
+  "theme": "Retro & Gaming",
+  "links": [
+    {
+      "title": "RetroArch",
+      "url": "https://www.retroarch.com/",
+      "description": "Frontend for emulators, game engines, and media players—an all-in-one solution for retro gaming."
+    },
+    {
+      "title": "DOSBox",
+      "url": "https://www.dosbox.com/",
+      "description": "A DOS emulator that lets you run old DOS games and applications flawlessly on modern systems."
+    },
+    {
+      "title": "ScummVM",
+      "url": "https://www.scummvm.org/",
+      "description": "Engine that allows you to play classic point-and-click adventure games like Monkey Island and Day of the Tentacle."
+    },
+    {
+      "title": "Lutris",
+      "url": "https://lutris.net/",
+      "description": "Open gaming platform for Linux that helps you install and manage games from all kinds of sources—native, Wine, emulated, and more."
+    },
+    {
+      "title": "PICO-8",
+      "url": "https://www.lexaloffle.com/pico-8.php",
+      "description": "Fantasy console for creating, sharing, and playing tiny games—popular in the retro pixel art scene."
+    },
+    {
+      "title": "PlayOnLinux",
+      "url": "https://www.playonlinux.com/en/",
+      "description": "Graphical frontend for Wine that helps you install and manage Windows games and software on Linux."
+    }
+  ],
+  "tips": [
+    {
+      "title": "Use Controllers with RetroArch",
+      "content": "RetroArch auto-detects many USB controllers and gamepads. Configure them in the input settings for smoother gameplay.",
+      "category": "Input"
+    },
+    {
+      "title": "Preserve Old Games",
+      "content": "Dump your old cartridge or CD-based games into ROMs or ISOs using tools like CloneCD or Retrode, and store them with checksums.",
+      "category": "Preservation"
+    },
+    {
+      "title": "Try DOSBox-X for Advanced Features",
+      "content": "DOSBox-X adds extended hardware support, save states, and better compatibility for DOS-based productivity tools.",
+      "category": "Emulation"
+    },
+    {
+      "title": "Build a Portable Gaming USB",
+      "content": "Combine tools like Ventoy and RetroArch with preloaded ROMs and emulators on a bootable USB for plug-and-play retro gaming.",
+      "category": "Portable Setup"
+    },
+    {
+      "title": "Explore Open-Source Remakes",
+      "content": "Many classic games have open-source remakes like OpenRA (Red Alert), FreeCiv, and OpenTTD. Great for LAN play or modding.",
+      "category": "Alternatives"
+    },
+    {
+      "title": "Use Lutris for Game Management",
+      "content": "Lutris can manage and run GOG, Steam, emulators, and Wine games all in one launcher—perfect for organizing your retro setup.",
+      "category": "Launchers"
+    }
+  ]
+}

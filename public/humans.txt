@@ -1,0 +1,25 @@
+/* TEAM */
+Name: APTlantis Team
+Site: https://aptlantis.net
+Twitter: @APTlantis
+GitHub: https://github.com/APTlantis
+Location: Global
+
+/* THANKS */
+Name: Open Source Community
+From: Everywhere
+
+/* SITE */
+Last update: 2023/12/15
+Language: English
+Doctype: HTML5
+IDE: VS Code, Vim, Emacs
+Generator: Next.js
+Standards: HTML5, CSS3, JavaScript
+Components: React, TypeScript, Next.js
+Software: Linux, Node.js, Git
+Hosting: Hetzner Cloud
+
+/* META */
+Description: APTlantis is a blazing-fast Linux mirror hub hosting full repositories, ISOs, and open-source packages for the global FOSS community.
+Keywords: Linux, mirrors, ISOs, open-source, Debian, Fedora, Arch, Ubuntu, AlmaLinux, Alpine

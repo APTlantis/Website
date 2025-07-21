@@ -1,0 +1,67 @@
+{
+  "theme": "Alternative & Experimental OSes",
+  "links": [
+    {
+      "title": "TempleOS Archive",
+      "url": "https://templeos.org/ (or your APTlantis subdomain)",
+      "description": "An operating system built by Terry A. Davis in HolyC. Designed to be a modern Commodore-64 and a divine temple."
+    },
+    {
+      "title": "KolibriOS",
+      "url": "https://kolibrios.org/en/",
+      "description": "Tiny, fast OS written in assembly. Boots in seconds, fits on a floppy disk, and includes a GUI, text editor, and more."
+    },
+    {
+      "title": "Haiku OS",
+      "url": "https://www.haiku-os.org/",
+      "description": "Open-source continuation of BeOS—designed for speed, efficiency, and simplicity with a native GUI."
+    },
+    {
+      "title": "Serenity OS",
+      "url": "https://serenityos.org/",
+      "description": "A beautiful UNIX-like OS built from scratch. Clean C++ codebase, custom GUI, and growing developer following."
+    },
+    {
+      "title": "ReactOS",
+      "url": "https://reactos.org/",
+      "description": "Windows-compatible open-source OS aimed at binary-level compatibility with Windows apps and drivers."
+    },
+    {
+      "title": "Plan 9 from Bell Labs",
+      "url": "https://9p.io/plan9/",
+      "description": "Experimental OS from Bell Labs focused on distributed computing and a unified file interface. Very influential in systems design."
+    }
+  ],
+  "tips": [
+    {
+      "title": "Try in a VM First",
+      "content": "Many alternative OSes aren’t suited for real hardware. Use VirtualBox, QEMU, or GNOME Boxes to test them safely.",
+      "category": "Testing"
+    },
+    {
+      "title": "Expect the Unexpected",
+      "content": "Most alt OSes don’t follow Linux conventions—don’t expect systemd, apt, or bash. Embrace the weird.",
+      "category": "Philosophy"
+    },
+    {
+      "title": "Join Small Communities",
+      "content": "Alt OS communities are often small but passionate. Forums, IRC, and GitHub issues are great ways to get help.",
+      "category": "Community"
+    },
+    {
+      "title": "Look at the Source Code",
+      "content": "Many of these OSes are written from scratch. Browsing their code is a masterclass in kernel design and UI architecture.",
+      "category": "Education"
+    },
+    {
+      "title": "Host ISOs for the Future",
+      "content": "Preserve early versions of rare or discontinued OSes. You may be the last mirror one day.",
+      "category": "Archival"
+    },
+    {
+      "title": "Use Read-Only Images",
+      "content": "Some of these OSes can corrupt disks or write in odd formats. Use ISO boot mode or snapshots to avoid issues.",
+      "category": "Safety"
+    }
+  ]
+}
