@@ -1,0 +1,28 @@
+{
+  "name": "APTlantis - High-Speed Linux Mirrors & ISOs",
+  "short_name": "APTlantis",
+  "description": "APTlantis is a blazing-fast Linux mirror hub hosting full repositories, ISOs, and open-source packages for the global FOSS community.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0066cc",
+  "icons": [
+    {
+      "src": "/aptlantis-logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/aptlantis-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["utilities", "developer tools", "linux"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "orientation": "any",
+  "prefer_related_applications": false
+}

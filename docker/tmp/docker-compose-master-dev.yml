@@ -5,7 +5,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./docker/sudo-swupd-Core/apt-MongoDB/mongodb_data:/data/db
+      - ./docker/sudo-swupd-Nexus/apt-MongoDB/mongodb_data:/data/db
     restart: unless-stopped
     networks:
       - sudo-apt-Core
@@ -41,7 +41,7 @@ services:
       - BUNKERWEB_DOMAIN=apt-Bunkerweb.aptlantis.net
     restart: unless-stopped
     volumes:
-      - ./docker/sudo-swupd-Core/apt-Bunkerweb:/var/opt/apt-Bunkerweb
+      - ./docker/sudo-swupd-Nexus/apt-Bunkerweb:/var/opt/apt-Bunkerweb
     networks:
       - sudo-apt-Core
 
@@ -56,7 +56,7 @@ services:
     networks:
       - sudo-apt-Core
     volumes:
-      - ./docker/sudo-swupd-Core/apt-BunkerwebUI:/var/opt/apt-BunkerwebUI
+      - ./docker/sudo-swupd-Nexus/apt-BunkerwebUI:/var/opt/apt-BunkerwebUI
 
   apt-Grafana:
     image: grafana/grafana:latest-ubuntu
@@ -64,7 +64,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./docker/sudo-swupd-Core/apt-Grafana:/var/opt/apt-Grafana
+      - ./docker/sudo-swupd-Nexus/apt-Grafana:/var/opt/apt-Grafana
     restart: unless-stopped
     networks:
       - sudo-apt-Core
@@ -75,8 +75,8 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./docker/sudo-swupd-Core/apt-Prometheus:/etc/prometheus
-      - ./docker/sudo-swupd-Core/apt-Prometheus/data:/prometheus
+      - ./docker/sudo-swupd-Nexus/apt-Prometheus:/etc/prometheus
+      - ./docker/sudo-swupd-Nexus/apt-Prometheus/data:/prometheus
     restart: unless-stopped
     networks:
       - sudo-apt-Core
@@ -122,7 +122,7 @@ services:
       - "9001:9000"
     volumes:
       - /var/run/docker-irc.sock:/var/run/docker-irc.sock
-      - ./docker/sudo-swupd-Core/apt-Portainer:/data
+      - ./docker/sudo-swupd-Nexus/apt-Portainer:/data
     restart: unless-stopped
     networks:
       - sudo-apt-Core
@@ -131,8 +131,8 @@ services:
     image: certbot/certbot
     container_name: apt-CertbotCloudflare
     volumes:
-      - ./docker/sudo-swupd-Core/apt-CertbotCloudflare:/etc/letsencrypt
-      - ./docker/sudo-swupd-Core/apt-CertbotCloudflare/logs:/var/log/letsencrypt
+      - ./docker/sudo-swupd-Nexus/apt-CertbotCloudflare:/etc/letsencrypt
+      - ./docker/sudo-swupd-Nexus/apt-CertbotCloudflare/logs:/var/log/letsencrypt
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     restart: unless-stopped
     networks:
@@ -144,7 +144,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./docker/sudo-swupd-Core/apt-Heimdall:/var/opt/apt-Heimdall
+      - ./docker/sudo-swupd-Nexus/apt-Heimdall:/var/opt/apt-Heimdall
     restart: unless-stopped
     networks:
       - sudo-apt-Core
@@ -199,25 +199,25 @@ services:
     ports:
       - "3100:3100"
     volumes:
-      - ./docker/sudo-swupd-Core/apt-Loki:/etc/loki
+      - ./docker/sudo-swupd-Nexus/apt-Loki:/etc/loki
     restart: unless-stopped
     networks:
-      - sudo-swupd-Core
+      - sudo-swupd-Nexus
 
   apt-Promtail:
     image: grafana/promtail:latest
     container_name: apt-Promtail
     volumes:
       - /var/log:/var/log
-      - ./docker/sudo-swupd-Core/apt-Promtail:/etc/promtail
+      - ./docker/sudo-swupd-Nexus/apt-Promtail:/etc/promtail
     restart: unless-stopped
     networks:
-      - sudo-swupd-Core
+      - sudo-swupd-Nexus
 
 
 networks:
   sudo-apt-Core:
-    name: sudo-swupd-Core
+    name: sudo-swupd-Nexus
   sudo-apt-Social:
     name: sudo-apt-Social
   sudo-apt-Secrets:

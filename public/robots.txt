@@ -1,0 +1,21 @@
+# robots.txt for APTlantis
+# Last updated: 2025-07-22
+
+User-agent: *
+# Allow crawling of the main site
+Allow: /
+# Disallow crawling of large binary files and repositories
+Disallow: /data/
+Disallow: /assets/isos/
+Disallow: /assets/packages/
+# Disallow crawling of admin areas
+Disallow: /admin/
+# Disallow crawling of temporary files
+Disallow: /*.tmp$
+Disallow: /*.bak$
+
+# Crawl delay to prevent overloading the server
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://aptlantis.net/sitemap.xml

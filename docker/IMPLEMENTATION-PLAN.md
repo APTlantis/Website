@@ -53,12 +53,14 @@ To ensure consistency, we'll standardize service naming conventions:
    - `nexus-` for core infrastructure services
    - `conventicle-` for social and AI services
    - `repopulse-` for repository management services
+   - `panacea-` for utility services
 
 2. **Network Names**:
-   - `aptlantis-vanguard`
-   - `aptlantis-nexus`
-   - `aptlantis-conventicle`
-   - `aptlantis-repopulse`
+   - `sudo-eopkg-Vanguard`
+   - `sudo-swupd-Nexus`
+   - `sudo-dpkg-Conventicle`
+   - `sudo-yum-RepoPulse`
+   - `sudo-zypper-Panacea`
 
 ### Volume Paths
 

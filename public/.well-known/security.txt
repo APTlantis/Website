@@ -1,0 +1,25 @@
+# security.txt for APTlantis
+# Format defined in RFC 9116: https://www.rfc-editor.org/rfc/rfc9116.html
+# Last updated: 2025-07-22
+
+# Contact information
+Contact: mailto:security@aptlantis.net
+Contact: https://aptlantis.net/security/report
+
+# Encryption key for secure communication
+Encryption: https://aptlantis.net/pgp-key.txt
+
+# Security policy
+Policy: https://aptlantis.net/security/policy
+
+# Preferred languages for security reports
+Preferred-Languages: en
+
+# Acknowledgments page
+Acknowledgments: https://aptlantis.net/security/hall-of-fame
+
+# Hiring information for security researchers
+Hiring: https://aptlantis.net/careers
+
+# Expiration date (1 year from now)
+Expires: 2026-07-22T00:00:00.000Z
