@@ -1,0 +1,228 @@
+services:
+  apt-MongoDB:
+    image: mongodb/mongodb-community-server
+    container_name: apt-MongoDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker/sudo-swupd-Core/apt-MongoDB/mongodb_data:/data/db
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Core
+
+  apt-InspIRCd:
+    image: ergochat/ergo
+    container_name: apt-InspIRCd
+    ports:
+      - "6667:6667"
+    volumes:
+      - ./docker/sudo-apt-Social/apt-InspIRCd:/var/opt/apt-InspIRCd
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Social
+
+  apt-TheLounge:
+    image: thelounge/thelounge:latest
+    container_name: apt-TheLounge
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./docker/sudo-apt-Social/apt-TheLounge:/var/opt/apt-TheLounge
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Social
+
+  apt-Bunkerweb:
+    image: bunkerity/bunkerweb
+    container_name: apt-Bunkerweb
+    ports:
+      - "8081:8080"
+    environment:
+      - BUNKERWEB_DOMAIN=apt-Bunkerweb.aptlantis.net
+    restart: unless-stopped
+    volumes:
+      - ./docker/sudo-swupd-Core/apt-Bunkerweb:/var/opt/apt-Bunkerweb
+    networks:
+      - sudo-apt-Core
+
+  apt-BunkerwebUI:
+    image: bunkerity/bunkerweb-ui
+    container_name: apt-BunkerwebUI
+    ports:
+      - "8082:8080"
+    environment:
+      - BUNKERWEB_DOMAIN=apt-bunkerwebui.aptlantis.net
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Core
+    volumes:
+      - ./docker/sudo-swupd-Core/apt-BunkerwebUI:/var/opt/apt-BunkerwebUI
+
+  apt-Grafana:
+    image: grafana/grafana:latest-ubuntu
+    container_name: apt-Grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./docker/sudo-swupd-Core/apt-Grafana:/var/opt/apt-Grafana
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Core
+
+  apt-Prometheus:
+    image: prom/prometheus
+    container_name: apt-Prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/sudo-swupd-Core/apt-Prometheus:/etc/prometheus
+      - ./docker/sudo-swupd-Core/apt-Prometheus/data:/prometheus
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Core
+
+  apt-Vault:
+    image: hashicorp/vault
+    container_name: apt-Vault
+    ports:
+      - "8200:8200"
+      - "8500:8500"
+    volumes:
+      - ./docker/sudo-apt-Secrets/apt-Vault:/vault/data
+    networks:
+      - sudo-apt-Secrets
+
+  apt-VaultConsul:
+    image: hashicorp/consul
+    container_name: apt-VaultConsul
+    restart: unless-stopped
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
+    volumes:
+      - ./docker/sudo-apt-Secrets/apt-Consul:/consul/data
+    networks:
+      - sudo-apt-Secrets
+
+  apt-ConsulTemplate:
+    image: hashicorp/consul-template
+    container_name: apt-ConsulTemplate
+    ports:
+      - "8700:8700"
+    restart: unless-stopped
+    depends_on:
+      - apt-VaultConsul
+    networks:
+      - sudo-apt-Secrets
+
+  apt-Portainer:
+    image: portainer/portainer-ce
+    container_name: apt-Portainer
+    ports:
+      - "9001:9000"
+    volumes:
+      - /var/run/docker-irc.sock:/var/run/docker-irc.sock
+      - ./docker/sudo-swupd-Core/apt-Portainer:/data
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Core
+
+  apt-CertbotCloudflare:
+    image: certbot/certbot
+    container_name: apt-CertbotCloudflare
+    volumes:
+      - ./docker/sudo-swupd-Core/apt-CertbotCloudflare:/etc/letsencrypt
+      - ./docker/sudo-swupd-Core/apt-CertbotCloudflare/logs:/var/log/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Core
+
+  apt-Heimdall:
+    image: linuxserver/heimdall
+    container_name: apt-Heimdall
+    ports:
+      - "8080:80"
+    volumes:
+      - ./docker/sudo-swupd-Core/apt-Heimdall:/var/opt/apt-Heimdall
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Core
+
+  apt-Dispatcher:
+    image: apt-dispatcher/apt-dispatcher
+    container_name: eopkg-Dispatcher
+    ports:
+      - "8083:9100"
+    volumes:
+      - ./docker/sudo-eopkg-RepoPulse/eopkg-Dispatcher:/var/opt/eopkg-Dispatcher
+    restart: unless-stopped
+    networks:
+      - sudo-apt-RepoPulse
+
+  apt-RsyncWorkers:
+    image: apt-rsync-workers/apt-rsync-workers
+    container_name: eopkg-RsyncWorkers
+    ports:
+      - "8084:9100"
+    volumes:
+      - ./docker/sudo-eopkg-RepoPulse/eopkg-RsyncWorkers:/var/opt/eopkg-RsyncWorkers
+    restart: unless-stopped
+    networks:
+      - sudo-apt-RepoPulse
+
+  apt-RsyncSecretary:
+    image: apt-rsync-secretary/apt-rsync-secretary
+    container_name: eopkg-RsyncSecretary
+    ports:
+      - "8085:9100"
+    volumes:
+      - ./docker/sudo-eopkg-RepoPulse/eopkg-RsyncSecretary:/var/opt/eopkg-RsyncSecretary
+    restart: unless-stopped
+    networks:
+      - sudo-eopkg-RepoPulse
+
+  apt-SubmissionSecretary:
+    image: apt-submission-secretary/apt-submission-secretary
+    container_name: apt-SubmissionSecretary
+    ports:
+      - "8086:9100"
+    volumes:
+      - ./docker/sudo-eopkg-RepoPulse/apt-SubmissionSecretary:/var/opt/apt-SubmissionSecretary
+    restart: unless-stopped
+    networks:
+      - sudo-apt-Utilities
+
+  apt-Loki:
+    image: grafana/loki:latest
+    container_name: apt-Loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./docker/sudo-swupd-Core/apt-Loki:/etc/loki
+    restart: unless-stopped
+    networks:
+      - sudo-swupd-Core
+
+  apt-Promtail:
+    image: grafana/promtail:latest
+    container_name: apt-Promtail
+    volumes:
+      - /var/log:/var/log
+      - ./docker/sudo-swupd-Core/apt-Promtail:/etc/promtail
+    restart: unless-stopped
+    networks:
+      - sudo-swupd-Core
+
+
+networks:
+  sudo-apt-Core:
+    name: sudo-swupd-Core
+  sudo-apt-Social:
+    name: sudo-apt-Social
+  sudo-apt-Secrets:
+    name: sudo-apt-Secrets
+  sudo-apt-RepoPulse:
+    name: sudo-eopkg-RepoPulse
+  sudo-apt-Utilities:
+    name: sudo-apt-Utilities

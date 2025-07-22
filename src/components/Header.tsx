@@ -88,13 +88,13 @@ const Header = () => {
             >
               Volunteer
             </Link>
-            {/* IRC Chat link hidden until functionality is working */}
-            {/* <Link
+
+            <Link
               to="/irc"
               className="text-gray-300 hover:text-cyan-400 transition-colors"
             >
               IRC Chat
-            </Link> */}
+            </Link>
             <Link
               to="/about"
               className="text-gray-300 hover:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0a0a0a] rounded-md transition-colors"

@@ -1,0 +1,102 @@
+services:
+  # sudo-swupd-nexus sudo-apt-Social sudo-eopk-RepoPulse
+    # sudo-swupd-nexus is the nexus service for managing the Aptlantis system
+
+  # MongoDB Community server as the sites Database
+  swupd-MongoDB:
+    image: mongodb/mongodb-community-server
+    container_name: swupd-MongoDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker/sudo-swupd-nexus/swupd-MongoDB/mongodb_data:/data/db
+    restart: unless-stopped
+    networks:
+      - sudo-swupd-nexus
+
+  # Portainer for managing Docker containers
+  swupd-Portainer:
+    image: portainer/portainer-ce
+    container_name: swupd-Portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker/sudo-swupd-nexus/swupd-Portainer:/data
+    restart: unless-stopped
+    networks:
+      - sudo-swupd-nexus
+
+  swupd-PortainerAgent:
+    image: portainer/agent
+    container_name: swupd-PortainerAgent
+    ports:
+      - "9001:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker:/var/lib/docker
+    restart: unless-stopped
+    networks:
+      - sudo-swupd-nexus
+
+  # Prometheus for monitoring
+  swupd-Prometheus:
+    image: prom/prometheus
+    container_name: swupd-Prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/sudo-swupd-nexus/swupd-Prometheus:/etc/prometheus
+      - ./docker/sudo-swupd-nexus/swupd-Prometheus/data:/prometheus
+    restart: unless-stopped
+    networks:
+      - sudo-swupd-nexus
+
+  # Grafana & Loki & Promtail for logging and visualization
+  swupd-Grafana:
+    image: grafana/grafana:latest-ubuntu
+    container_name: swupd-Grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./docker-irc-modules/sudo-swupd-nexus/swupd-Grafana:/var/opt/swupd-Grafana
+    restart: unless-stopped
+    networks:
+      - sudo-swupd-nexus
+
+  swupd-Loki:
+      image: grafana/loki:latest
+      container_name: swupd-Loki
+      ports:
+        - "3100:3100"
+      volumes:
+        - ./docker/sudo-apt-nexus/apt-Loki:/etc/loki
+      restart: unless-stopped
+      networks:
+        - sudo-swupd-nexus
+
+  swupd-Promtail:
+      image: grafana/promtail:latest
+      container_name: swupd-Promtail
+      volumes:
+        - /var/log:/var/log
+        - ./docker/sudo-swupd-nexus/swupd-Promtail:/etc/promtail
+      restart: unless-stopped
+      networks:
+        - sudo-swupd-nexus
+
+  # docker-compose.override.yml
+  services:
+  swupd-Heimdall:
+      image: linuxserver/heimdall
+      ports:
+        - "9999:80"
+      volumes:
+        - ./heimdall:/config
+      networks:
+        - sudo-swupd-Nexus
+
+
+networks:
+  sudo-swupd-nexus:
+    name: sudo-swupd-nexus

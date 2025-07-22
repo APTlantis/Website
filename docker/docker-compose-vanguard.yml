@@ -1,0 +1,129 @@
+services:
+  swupd-CertbotCloudflare:
+    image: certbot/dns-cloudflare
+    container_name: eopkg-Certbot
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/swupd-CertbotCloudflare/conf:/etc/letsencrypt
+      - ./docker/sudo-eopkg-Vanguard/swupd-CertbotCloudflare/cloudflare:/cloudflare
+    environment:
+      - CLOUDFLARE_EMAIL=you@example.com
+      - CLOUDFLARE_API_KEY=your_global_api_key
+    command: >
+      certonly --dns-cloudflare
+      --dns-cloudflare-credentials /cloudflare/credentials.ini
+      -d '*.aptlantis.net' -d aptlantis.net
+      --agree-tos --no-eff-email --non-interactive
+    restart: unless-stopped
+    networks:
+      - sudo-eopkg-Vanguard
+
+  swupd-Vault:
+    image: hashicorp/vault
+    container_name: eopkg-Vault
+    ports:
+      - "8200:8200"
+      - "8500:8500"
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/apt-Vault:/vault/data
+    networks:
+      - sudo-apt-Vanguard
+
+  apt-VaultConsul:
+    image: hashicorp/consul
+    container_name: eopkg-VaultConsul
+    restart: unless-stopped
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/apt-Consul:/consul/data
+    networks:
+      - sudo-eopkg-Vanguard
+
+  apt-ConsulTemplate:
+    image: hashicorp/consul-template
+    container_name: eopkg-ConsulTemplate
+    ports:
+      - "8700:8700"
+    restart: unless-stopped
+    depends_on:
+      - eopkg-VaultConsul
+    networks:
+      - sudo-eopkg-Vanguard
+
+  eopkg-CloudflareLogshipper:
+    image: aptlantis/cloudflare-logshipper
+    container_name: eopkg-CloudflareLogshipper
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/apt-CloudflareLogshipper:/etc/logshipper
+    restart: unless-stopped
+    networks:
+      - sudo-eopkg-Vanguard
+
+  eopkg-Crowdsec:
+    image: aptlantis/crowdsec
+    container_name: eopkg-Crowdsec
+    ports:
+      - "8081:8080"
+      - "6060:6060"
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/apt-Crowdsec:/etc/crowdsec
+      - ./docker/sudo-eopkg-Vanguard/apt-Crowdsec/data:/var/lib/crowdsec
+    restart: unless-stopped
+    networks:
+      - sudo-eopkg-Vanguard
+
+  eopkg-Suricata:
+    image: aptlantis/suricata
+    container_name: eopkg-Suricata
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/apt-Suricata:/etc/suricata
+      - ./docker/sudo-eopkg-Vanguard/apt-Suricata/logs:/var/log/suricata
+    restart: unless-stopped
+    networks:
+      - sudo-eopkg-Vanguard
+
+  eopkg-Fail2Ban:
+    image: aptlantis/fail2ban
+    container_name: eopkg-Fail2Ban
+    ports:
+      - "8083:8080"
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/apt-Fail2Ban:/etc/fail2ban
+      - ./docker/sudo-eopkg-Vanguard/apt-Fail2Ban/logs:/var/log/fail2ban
+    restart: unless-stopped
+    networks:
+      - sudo-eopkg-Vanguard
+
+  # Bunkerweb, Ideally can become all enclusive option that also replaces Caddy
+  swupd-Bunkerweb:
+    image: bunkerity/bunkerweb
+    container_name: eopkg-Bunkerweb
+    ports:
+      - "8081:8080"
+    environment:
+      - BUNKERWEB_DOMAIN=swupd-Bunkerweb.aptlantis.net
+    restart: unless-stopped
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/eopkg-Bunkerweb:/var/opt/swupd-Bunkerweb
+    networks:
+      - sudo-eopkg-Vanguard
+
+  # Bunkerweb UI for managing the Bunkerweb instance
+  eopkg-BunkerwebUI:
+    image: bunkerity/bunkerweb-ui
+    container_name: eopkg-BunkerwebUI
+    ports:
+      - "8082:8080"
+    environment:
+      - BUNKERWEB_DOMAIN=swupd-bunkerwebui.aptlantis.net
+    restart: unless-stopped
+    networks:
+      - sudo-eopkg-Vanguard
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/eopkg-BunkerwebUI:/var/opt/eopkg-BunkerwebUI
+
