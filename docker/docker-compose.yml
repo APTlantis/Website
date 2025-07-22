@@ -1,0 +1,314 @@
+version: '3.8'
+
+# Main docker-compose file for Aptlantis
+# This file defines the core services and networks for the Aptlantis infrastructure
+
+services:
+  #############################################
+  # VANGUARD - Security Perimeter Services
+  #############################################
+  
+  vanguard-bunkerweb:
+    image: bunkerity/bunkerweb:latest
+    container_name: vanguard-bunkerweb
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./volumes/vanguard/bunkerweb:/etc/bunkerweb
+      - ./volumes/vanguard/certbot/conf:/etc/letsencrypt:ro
+    environment:
+      - BUNKERWEB_DOMAIN=${DOMAIN:-aptlantis.net}
+      - BUNKERWEB_CERT_PATH=/etc/letsencrypt/live/${DOMAIN:-aptlantis.net}/fullchain.pem
+      - BUNKERWEB_KEY_PATH=/etc/letsencrypt/live/${DOMAIN:-aptlantis.net}/privkey.pem
+    networks:
+      - aptlantis-vanguard
+      - aptlantis-nexus
+    depends_on:
+      - vanguard-certbot
+  
+  vanguard-certbot:
+    image: certbot/dns-cloudflare:latest
+    container_name: vanguard-certbot
+    volumes:
+      - ./volumes/vanguard/certbot/conf:/etc/letsencrypt
+      - ./volumes/vanguard/certbot/cloudflare:/cloudflare
+    environment:
+      - CLOUDFLARE_EMAIL=${CLOUDFLARE_EMAIL:-your@email.com}
+      - CLOUDFLARE_API_KEY=${CLOUDFLARE_API_KEY:-your_global_api_key}
+    command: >
+      certonly --dns-cloudflare
+      --dns-cloudflare-credentials /cloudflare/credentials.ini
+      -d '*.${DOMAIN:-aptlantis.net}' -d ${DOMAIN:-aptlantis.net}
+      --agree-tos --no-eff-email --non-interactive
+    networks:
+      - aptlantis-vanguard
+  
+  vanguard-crowdsec:
+    image: crowdsecurity/crowdsec:latest
+    container_name: vanguard-crowdsec
+    volumes:
+      - ./volumes/vanguard/crowdsec/config:/etc/crowdsec
+      - ./volumes/vanguard/crowdsec/data:/var/lib/crowdsec
+      - /var/log:/var/log:ro
+    ports:
+      - "127.0.0.1:6060:6060"
+    networks:
+      - aptlantis-vanguard
+    restart: unless-stopped
+  
+  vanguard-crowdsec-bouncer:
+    image: crowdsecurity/cs-firewall-bouncer:latest
+    container_name: vanguard-crowdsec-bouncer
+    environment:
+      - CROWDSEC_LAPI_URL=http://vanguard-crowdsec:8080
+      - CROWDSEC_LAPI_KEY=${CROWDSEC_BOUNCER_KEY:-changeme}
+    networks:
+      - aptlantis-vanguard
+    restart: unless-stopped
+    depends_on:
+      - vanguard-crowdsec
+  
+  vanguard-fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: vanguard-fail2ban
+    volumes:
+      - ./volumes/vanguard/fail2ban/data:/data
+      - /var/log:/var/log:ro
+    environment:
+      - TZ=${TZ:-UTC}
+    networks:
+      - aptlantis-vanguard
+    restart: unless-stopped
+  
+  vanguard-suricata:
+    image: jasonish/suricata:latest
+    container_name: vanguard-suricata
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    network_mode: host
+    volumes:
+      - ./volumes/vanguard/suricata:/var/lib/suricata
+    restart: unless-stopped
+  
+  vanguard-vault:
+    image: hashicorp/vault:latest
+    container_name: vanguard-vault
+    ports:
+      - "127.0.0.1:8200:8200"
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=${VAULT_ROOT_TOKEN:-changeme}
+    volumes:
+      - ./volumes/vanguard/vault:/vault/config
+    cap_add:
+      - IPC_LOCK
+    networks:
+      - aptlantis-vanguard
+      - aptlantis-nexus
+    restart: unless-stopped
+  
+  vanguard-consul-template:
+    image: hashicorp/consul-template:latest
+    container_name: vanguard-consul-template
+    volumes:
+      - ./volumes/vanguard/consul-template:/etc/consul-template
+    networks:
+      - aptlantis-vanguard
+      - aptlantis-nexus
+    restart: unless-stopped
+    depends_on:
+      - vanguard-vault
+  
+  #############################################
+  # NEXUS - Core Infrastructure Services
+  #############################################
+  
+  nexus-mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: nexus-mongodb
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - ./volumes/nexus/mongodb:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD:-changeme}
+    restart: unless-stopped
+    networks:
+      - aptlantis-nexus
+  
+  nexus-portainer:
+    image: portainer/portainer-ce:latest
+    container_name: nexus-portainer
+    ports:
+      - "127.0.0.1:9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./volumes/nexus/portainer:/data
+    restart: unless-stopped
+    networks:
+      - aptlantis-nexus
+  
+  nexus-prometheus:
+    image: prom/prometheus:latest
+    container_name: nexus-prometheus
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./volumes/nexus/prometheus/config:/etc/prometheus
+      - ./volumes/nexus/prometheus/data:/prometheus
+    restart: unless-stopped
+    networks:
+      - aptlantis-nexus
+  
+  nexus-grafana:
+    image: grafana/grafana:latest
+    container_name: nexus-grafana
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./volumes/nexus/grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-changeme}
+    restart: unless-stopped
+    networks:
+      - aptlantis-nexus
+  
+  nexus-loki:
+    image: grafana/loki:latest
+    container_name: nexus-loki
+    ports:
+      - "127.0.0.1:3100:3100"
+    volumes:
+      - ./volumes/nexus/loki:/etc/loki
+    restart: unless-stopped
+    networks:
+      - aptlantis-nexus
+  
+  nexus-promtail:
+    image: grafana/promtail:latest
+    container_name: nexus-promtail
+    volumes:
+      - /var/log:/var/log:ro
+      - ./volumes/nexus/promtail:/etc/promtail
+    restart: unless-stopped
+    networks:
+      - aptlantis-nexus
+    depends_on:
+      - nexus-loki
+  
+  nexus-heimdall:
+    image: linuxserver/heimdall:latest
+    container_name: nexus-heimdall
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./volumes/nexus/heimdall:/config
+    restart: unless-stopped
+    networks:
+      - aptlantis-nexus
+  
+  #############################################
+  # CONVENTICLE - Social and AI Services
+  #############################################
+  
+  conventicle-ergo:
+    image: ghcr.io/ergochat/ergo:stable
+    container_name: conventicle-ergo
+    ports:
+      - "6667:6667/tcp"
+      - "6697:6697/tcp"
+    volumes:
+      - ./volumes/conventicle/ergo:/ircd
+    restart: unless-stopped
+    networks:
+      - aptlantis-conventicle
+  
+  conventicle-thelounge:
+    image: thelounge/thelounge:latest
+    container_name: conventicle-thelounge
+    ports:
+      - "127.0.0.1:9000:9000"
+    volumes:
+      - ./volumes/conventicle/thelounge:/var/opt/thelounge
+    restart: unless-stopped
+    networks:
+      - aptlantis-conventicle
+      - aptlantis-nexus
+  
+  conventicle-ollama:
+    image: ollama/ollama:latest
+    container_name: conventicle-ollama
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ./volumes/conventicle/ollama:/root/.ollama
+    restart: unless-stopped
+    networks:
+      - aptlantis-conventicle
+  
+  #############################################
+  # REPOPULSE - Repository Management Services
+  #############################################
+  
+  repopulse-dispatcher:
+    image: ${REGISTRY:-localhost}/aptlantis/dispatcher:${TAG:-latest}
+    container_name: repopulse-dispatcher
+    ports:
+      - "127.0.0.1:8083:9100"
+    volumes:
+      - ./volumes/repopulse/dispatcher:/var/opt/dispatcher
+    restart: unless-stopped
+    networks:
+      - aptlantis-repopulse
+      - aptlantis-nexus
+  
+  repopulse-rsync-workers:
+    image: ${REGISTRY:-localhost}/aptlantis/rsync-workers:${TAG:-latest}
+    container_name: repopulse-rsync-workers
+    ports:
+      - "127.0.0.1:8084:9100"
+    volumes:
+      - ./volumes/repopulse/rsync-workers:/var/opt/rsync-workers
+    restart: unless-stopped
+    networks:
+      - aptlantis-repopulse
+  
+  repopulse-rsync-secretary:
+    image: ${REGISTRY:-localhost}/aptlantis/rsync-secretary:${TAG:-latest}
+    container_name: repopulse-rsync-secretary
+    ports:
+      - "127.0.0.1:8085:9100"
+    volumes:
+      - ./volumes/repopulse/rsync-secretary:/var/opt/rsync-secretary
+    restart: unless-stopped
+    networks:
+      - aptlantis-repopulse
+  
+  repopulse-submission-secretary:
+    image: ${REGISTRY:-localhost}/aptlantis/submission-secretary:${TAG:-latest}
+    container_name: repopulse-submission-secretary
+    ports:
+      - "127.0.0.1:8086:9100"
+    volumes:
+      - ./volumes/repopulse/submission-secretary:/var/opt/submission-secretary
+    restart: unless-stopped
+    networks:
+      - aptlantis-repopulse
+      - aptlantis-nexus
+
+networks:
+  aptlantis-vanguard:
+    name: aptlantis-vanguard
+    driver: bridge
+  aptlantis-nexus:
+    name: aptlantis-nexus
+    driver: bridge
+  aptlantis-conventicle:
+    name: aptlantis-conventicle
+    driver: bridge
+  aptlantis-repopulse:
+    name: aptlantis-repopulse
+    driver: bridge
