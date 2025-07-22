@@ -52,6 +52,13 @@ const MetaTags = ({
 
     // Update canonical URL
     updateLink('canonical', canonicalUrl);
+    
+    // Add favicon links
+    updateLink('icon', '/favicon.ico');
+    updateLink('apple-touch-icon', '/logos/apple-icon-180x180.png');
+    
+    // Add manifest link
+    updateLink('manifest', '/manifest.json');
 
     // Update Open Graph meta tags
     updateMetaTag('og:title', ogTitle, 'property');

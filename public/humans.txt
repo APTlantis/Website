@@ -10,7 +10,7 @@ Name: Open Source Community
 From: Everywhere
 
 /* SITE */
-Last update: 2023/12/15
+Last update: 2025/07/22
 Language: English
 Doctype: HTML5
 IDE: VS Code, Vim, Emacs

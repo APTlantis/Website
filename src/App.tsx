@@ -37,6 +37,10 @@ const VolunteerPage = lazy(() =>
 const MuseumPage = lazy(() =>
   import('./features/museum').then(module => ({ default: module.MuseumPage }))
 );
+// Lazy load the OnboardingPage
+const OnboardingPage = lazy(() =>
+  import('./features/onboarding').then(module => ({ default: module.OnboardingPage }))
+);
 // Lazy load the CodingWeirdStuffPage
 const CodingWeirdStuffPage = lazy(() => import("./features/coding-weird-stuff").then(module => ({ default: module.CodingWeirdStuffPage })))
 
@@ -65,6 +69,7 @@ function App() {
                           {/* <Route path="/flash-iso" element={<FlashISOPage />} /> */}
                           <Route path="/irc" element={<IRCServerPage />} />
                           <Route path="/museum" element={<MuseumPage />} />
+                          <Route path="/onboarding" element={<OnboardingPage />} />
                           <Route path="/coding-weird-stuff" element={<CodingWeirdStuffPage />} />
                         </Routes>
                       </Suspense>

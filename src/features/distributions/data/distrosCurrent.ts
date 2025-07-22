@@ -704,4 +704,152 @@ Zorin is ideal for new Linux users, schools, and organizations seeking an easy-t
     recommendedRequirements:
       '2 GHz CPU, 4 GB RAM, 30 GB disk space, 1366×768 graphics, Internet access',
   },
+  {
+    id: "turnkeylinux",
+    title: "TurnKey Linux",
+    description: "TurnKey Linux offers ready-to-deploy Debian-based server appliances for every use case.",
+    buttonColor: "bg-sky-700 dark:bg-sky-900 text-white hover:bg-sky-600 dark:hover:bg-sky-800",
+    buttonText: "Visit Website",
+    rsyncCommand: "rsync -avz --delete rsync://mirrors.aptlantis.net/turnkeylinux/ /path/to/local/appliances/",
+    logoSrc: "/logos/turnkey.webp",
+    websiteUrl: "https://www.turnkeylinux.org/",
+    isoUrl: "https://mirrors.aptlantis.net/turnkeylinux/isos/",
+    longDescription: `TurnKey Linux is a library of pre-integrated, Debian-based server appliances that allow anyone to deploy complex services in minutes. Each appliance bundles a hardened OS with preinstalled web apps, CMS platforms, databases, development stacks, and more.
+
+Examples include WordPress, LAMP, GitLab, OpenLDAP, and File Server—all preconfigured and security-patched. TurnKey VMs work with bare metal, Proxmox, VMware, VirtualBox, and cloud platforms.
+
+APTlantis mirrors the full ISO and VM image catalog to support DevOps workflows, rapid prototyping, and air-gapped environments.`,
+    minimumRequirements: "x86_64 CPU, 512 MB RAM, 1 GB disk",
+    recommendedRequirements: "Dual-core CPU, 2 GB RAM, 4+ GB disk, virtualization support"
+  },
+
+  {
+    id: 'trisquel',
+    title: 'Trisquel GNU/Linux',
+    description:
+        'Trisquel is a fully free Ubuntu-based distribution endorsed by the Free Software Foundation.',
+    buttonColor: 'bg-sky-700 dark:bg-sky-900 text-white hover:bg-sky-800 dark:hover:bg-sky-950',
+    buttonText: 'Visit Website',
+    rsyncCommand:
+        'rsync -avz --delete rsync://mirrors.aptlantis.net/trisquel/ /path/to/local/repo/',
+    logoSrc: '/logos/trisquel.webp',
+    websiteUrl: 'https://trisquel.info/',
+    isoUrl: 'https://mirrors.aptlantis.net/trisquel/isos/',
+    longDescription: `Trisquel GNU/Linux is an Ubuntu-based Linux distribution committed to 100% free software. It removes all proprietary drivers, non-free firmware, and software with restrictive licenses, offering a system that adheres strictly to the Free Software Foundation's guidelines.
+
+Trisquel is popular in academic, governmental, and ethical computing circles. It comes with the MATE desktop environment (formerly GNOME 2), LibreOffice, Abrowser (a debranded and privacy-respecting Firefox fork), and other essential tools—all fully libre.
+
+It is ideal for users who want a simple, dependable Linux experience without compromising software freedom. Several editions are available, including Trisquel Mini for older hardware.`,
+    minimumRequirements:
+        '1 GHz CPU, 512 MB RAM, 8 GB disk space, Open-source GPU driver, Internet connection',
+    recommendedRequirements:
+        '2 GHz dual-core CPU, 2 GB RAM, 15 GB disk space, 1366×768 graphics, Internet for updates',
+  },
+  {
+    id: 'opensuse',
+    title: 'openSUSE',
+    description:
+        'openSUSE is a powerful Linux distro for desktops and servers, backed by SUSE and the open source community.',
+    buttonColor:
+        'bg-green-700 dark:bg-green-900 text-white hover:bg-green-600 dark:hover:bg-green-800',
+    buttonText: 'Visit Website',
+    rsyncCommand:
+        'rsync -avz --delete rsync://mirrors.aptlantis.net/opensuse/ /path/to/local/repo/',
+    logoSrc: '/logos/opensuse.webp',
+    websiteUrl: 'https://www.opensuse.org/',
+    isoUrl: 'https://mirrors.aptlantis.net/opensuse/isos/',
+    longDescription: `openSUSE is a robust, enterprise-grade Linux distribution developed by the openSUSE Project with support from SUSE. It comes in two main editions: Leap (stable, regular-release) and Tumbleweed (rolling-release, cutting-edge).
+
+Leap is ideal for desktops, servers, and production systems, while Tumbleweed offers the latest software stacks and kernel updates. openSUSE is known for its professional-grade tools like YaST (system control panel), Zypper (package manager), and snapper (for Btrfs snapshots).
+
+It's a solid choice for developers, sysadmins, and users who want performance, flexibility, and enterprise tooling without a subscription.`,
+    minimumRequirements: 'x86_64 CPU, 2 GB RAM, 5 GB disk space, 1024×768 display',
+    recommendedRequirements:
+        'Dual-core CPU, 4+ GB RAM, 20 GB disk space, 1366×768+ display, Internet for repos',
+  },
+  {
+    id: 'parabola',
+    title: 'Parabola GNU/Linux-libre',
+    description:
+        'Parabola is a libre Arch-based distro endorsed by the FSF, using only free software.',
+    buttonColor: 'bg-black dark:bg-gray-900 text-white hover:bg-gray-800 dark:hover:bg-gray-700',
+    buttonText: 'Visit Website',
+    rsyncCommand:
+        'rsync -avz --delete rsync://mirrors.aptlantis.net/parabola/ /path/to/local/repo/',
+    logoSrc: '/logos/parabola.webp',
+    websiteUrl: 'https://www.parabola.nu/',
+    isoUrl: 'https://mirrors.aptlantis.net/parabola/isos/',
+    longDescription: `Parabola GNU/Linux-libre is an Arch-based Linux distribution that exclusively includes free software as defined by the Free Software Foundation (FSF). It removes all non-free components, blobs, and proprietary software, and replaces them with libre alternatives wherever possible.
+
+Maintained by a small but dedicated team, Parabola offers rolling releases, pacman package management, and compatibility with Arch's AUR — while ensuring everything remains free-as-in-freedom.
+
+Parabola is officially endorsed by the FSF and is a solid choice for users who prioritize software freedom, transparency, and ethical computing. It supports both OpenRC and systemd-based init systems.`,
+    minimumRequirements:
+        '1 GHz processor, 512 MB RAM, 5 GB disk space, Open graphics driver, Internet connection',
+    recommendedRequirements:
+        '2 GHz processor, 2 GB RAM, 15 GB disk space, Libre-compatible graphics, Broadband connection',
+  },
+  {
+    id: 'gentoo',
+    title: 'Gentoo Linux',
+    description:
+        'Gentoo is a source-based rolling distro known for extreme customization and performance.',
+    buttonColor:
+        'bg-neutral-700 dark:bg-neutral-900 text-white hover:bg-neutral-600 dark:hover:bg-neutral-800',
+    buttonText: 'Visit Website',
+    rsyncCommand: 'rsync -avz --delete rsync://mirrors.aptlantis.net/gentoo/ /path/to/local/repo/',
+    logoSrc: '/logos/gentoo.webp',
+    websiteUrl: 'https://www.gentoo.org/',
+    isoUrl: 'https://mirrors.aptlantis.net/gentoo/isos/',
+    longDescription: `Gentoo Linux is a source-based Linux distribution for advanced users who want full control over their software and system behavior. Packages are compiled using \`emerge\`, Gentoo’s powerful Portage package manager.
+
+Gentoo offers ultimate customization at the cost of time and complexity, making it ideal for performance tuning, embedded systems, and educational purposes. Its documentation and community support help users manage complex builds.
+
+As a rolling-release system, Gentoo stays continuously updated, and its USE flags allow fine-grained control over optional features, dependencies, and optimizations.`,
+    minimumRequirements: '1 GHz CPU, 1 GB RAM, 10 GB disk space, Terminal-based installer',
+    recommendedRequirements:
+        '2 GHz quad-core CPU, 4+ GB RAM, 20+ GB disk space, Internet for source builds',
+  },
+  {
+    id: 'almalinux',
+    title: 'AlmaLinux',
+    description:
+        'AlmaLinux is a community-driven replacement for CentOS, built for stability and enterprise workloads.',
+    buttonColor: 'bg-blue-600 dark:bg-blue-800 text-white hover:bg-blue-700 dark:hover:bg-blue-900',
+    buttonText: 'Visit Website',
+    rsyncCommand:
+        'rsync -avz --delete rsync://mirrors.aptlantis.net/almalinux/ /path/to/local/repo/',
+    logoSrc: '/logos/almaLINUX.webp',
+    websiteUrl: 'https://almalinux.org/',
+    isoUrl: 'https://mirrors.aptlantis.net/almalinux/isos/',
+    longDescription: `AlmaLinux is a free and open-source Linux distribution designed as a drop-in replacement for CentOS, following the same release structure as Red Hat Enterprise Linux (RHEL). It was created by the AlmaLinux OS Foundation in response to Red Hat shifting CentOS to a rolling-release model (CentOS Stream).
+
+The distro aims to provide long-term, stable releases backed by a strong community and enterprise sponsors. It is binary-compatible with RHEL and is ideal for production servers, cloud deployments, and mission-critical environments.
+
+With regular security updates, comprehensive documentation, and robust community support, AlmaLinux has quickly become a trusted choice for users and companies looking for a dependable RHEL alternative without vendor lock-in.`,
+    minimumRequirements:
+        '1 GHz processor, 1 GB RAM, 10 GB disk space, VGA graphics, Internet connection for updates',
+    recommendedRequirements:
+        '2 GHz dual-core processor, 4 GB RAM, 25 GB disk space, 1366×768 graphics, Broadband internet connection',
+  },
+  {
+    id: 'backbox',
+    title: 'BackBox Linux',
+    description:
+        'BackBox is an Ubuntu-based distro tailored for penetration testing and security assessments.',
+    buttonColor: 'bg-gray-800 dark:bg-black text-white hover:bg-gray-700 dark:hover:bg-gray-900',
+    buttonText: 'Visit Website',
+    rsyncCommand: 'rsync -avz --delete rsync://mirrors.aptlantis.net/backbox/ /path/to/local/repo/',
+    logoSrc: '/logos/backbox.webp',
+    websiteUrl: 'https://www.backbox.org/',
+    isoUrl: 'https://mirrors.aptlantis.net/backbox/isos/',
+    longDescription: `BackBox Linux is a security-focused Ubuntu-based distribution designed for penetration testing, ethical hacking, and security auditing. It provides a lightweight XFCE desktop environment combined with a curated collection of tools for vulnerability assessment, digital forensics, and network analysis.
+
+Unlike some heavier security distros, BackBox emphasizes performance and responsiveness, making it suitable for use on modest hardware or virtual machines. It includes a full suite of open-source security tools and is maintained by a team committed to delivering regular updates and community-driven improvements.
+
+BackBox is trusted by professionals for quick deployment in real-world assessments.`,
+    minimumRequirements: '1 GHz CPU, 1 GB RAM, 10 GB disk space, 1024×768 graphics',
+    recommendedRequirements:
+        '2 GHz dual-core CPU, 4 GB RAM, 20 GB disk space, 1366×768 graphics, Internet connection',
+  },
 ];

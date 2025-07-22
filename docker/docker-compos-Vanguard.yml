@@ -21,6 +21,20 @@ services:
     networks:
       - sudo-eopkg-Vanguard
 
+  eopkg-BunkewWebUI:
+    image: bunkerity/bunkerweb-ui:latest
+    container_name: eopkg-BunkewWebUI
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - BUNKERWEB_API_URL=http://eopkg-BunkerWeb:10101
+    volumes:
+      - ./docker/sudo-eopkg-Vanguard/eopkg-BunkerWebUI:/etc/bunkerweb-ui
+    networks:
+      - sudo-eopkg-Vanguard
+
+
   eopkg-CertbotCloudflare:
     image: certbot/dns-cloudflare
     container_name: eopkg-CertbotCloudflare

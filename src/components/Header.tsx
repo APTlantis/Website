@@ -36,7 +36,7 @@ const Header = () => {
             <Link to="/" className="flex items-center">
               <div className="w-12 h-12 relative mr-3">
                 <img
-                  src="/aptlantis-logo.webp"
+                  src="/favicon.webp"
                   width={48}
                   height={48}
                   alt="Aptlantis Logo"
@@ -94,6 +94,12 @@ const Header = () => {
               className="text-gray-300 hover:text-cyan-400 transition-colors"
             >
               IRC Chat
+            </Link>
+            <Link
+              to="/onboarding"
+              className="text-gray-300 hover:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0a0a0a] rounded-md transition-colors"
+            >
+              Onboarding
             </Link>
             <Link
               to="/about"
@@ -182,6 +188,14 @@ const Header = () => {
               >
                 IRC Chat
               </Link> */}
+              <Link
+                to="/onboarding"
+                className="text-gray-300 hover:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0a0a0a] rounded-md transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+                tabIndex={isMenuOpen ? 0 : -1}
+              >
+                Onboarding
+              </Link>
               <Link
                 to="/about"
                 className="text-gray-300 hover:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-[#0a0a0a] rounded-md transition-colors"
