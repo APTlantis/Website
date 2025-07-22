@@ -1,11 +1,3 @@
-GitHub will **not render `.toml` as a README**, unfortunately. It will only look for and display a `README.md` (or, technically, `README` with `.md`, `.rst`, or `.txt` extensions) at the root of the repo.
-
-So yeah, even if you prefer TOML for internal config/meta, you’ll still need a `README.md` to get that pretty rendered landing page.
-
----
-
-### ⚡ Here's a starter `README.md` based on your style:
-
 ```markdown
 # 🛸 APTlantis
 
@@ -83,7 +75,4 @@ Public domain. Use it. Remix it. Mirror weird stuff. Spread the lore.
 Want a distro mirrored? Have an obscure project? Need a relic forged?
 Reach out. Open a PR. Leave a footprint.
 
-```
-
-Want me to push a version of that into your repo and tailor it more? Or break it out into “Reliquary”-themed sub-sections?
 ```
