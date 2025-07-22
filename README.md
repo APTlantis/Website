@@ -1,112 +1,78 @@
-# APTlantis Infrastructure Overview
+```markdown
+# 🛸 APTlantis
 
-## 🧭 Layered Architecture Summary
+> A boutique Linux mirror network and infrastructure stack — stylized, lore-rich, modular, and built for the curious.
 
-APTlantis is structured into modular, containerized layers that resemble a distributed operating system, where each layer governs a functional domain of the infrastructure.
+APTlantis is more than a mirror — it’s a relic archive, a living reliquary. Hosting 55+ Linux distributions, CRAN-R, Hackage, crates.io, PyPI, and more. All synced multiple times a day, managed by Go, Rust, and Kotlin scripts, logged via MongoDB, and visualized in a custom real-time dashboard.
 
-### 1. `sudo-swupd-Nexus` – Orchestration & Observability
+### 🔩 Features
 
-* **Purpose**: Monitoring, dashboards, container orchestration
-* **Services**:
+- 🌀 **Live rsync status dashboard** with real-time metrics
+- 🧱 **Modular Docker stack** for rsync dispatch, web, and sync orchestration
+- 📊 **MongoDB backend** for logging and repo metadata
+- 🧙 **Lore-layered interface** — relics, rites, and mythos baked into the UX
+- 💡 **Fully API-driven** via Go and Rust microservices
+- 🎨 **Responsive card UI** with dark theming, glow effects, and screenshot support
+- 🧩 **Extensible** — add a distro with one JSON entry
 
-    * `swupd-Prometheus`: Metrics scraping
-    * `swupd-Grafana`: Visualization and alerting
-    * `swupd-Loki` & `swupd-Promtail`: Log aggregation
-    * `swupd-MongoDB`: Shared data backend
-    * `swupd-Portainer` & `swupd-PortainerAgent`: Container management
+### 📦 Stack
 
-### 2. `sudo-eopkg-Vanguard` – Security Perimeter
+| Layer     | Tech |
+|-----------|------|
+| Frontend  | TypeScript, HTML, Bootstrap, TailwindCSS |
+| Backend   | Go, Rust, Python, Kotlin |
+| Orchestration | Docker, PNPM, MongoDB |
+| Hosting   | Hetzner (Finland), Caddy, Cloudflare |
 
-* **Purpose**: Defense, access control, edge validation
-* **Services**:
+### 🧭 Philosophy
 
-    * `eopkg-BunkerWeb`: TLS termination, WAF, reverse proxy
-    * `eopkg-Certbot`: Wildcard certs via Cloudflare DNS
-    * `eopkg-CrowdSec`, `eopkg-Fail2Ban`, `eopkg-Suricata`: Behavioral, brute force, and packet-based protection
-    * `eopkg-CloudflareLogshipper`: DNS/firewall log ingestion
-
-### 3. `sudo-apt-Conventicle` – Social & Interface Layer
-
-* **Purpose**: IRC, chat, LLM interfaces
-* **Services**:
-
-    * `apt-ErgoIRC`: IRC server backend
-    * `apt-TheLounge`: Web IRC frontend
-    * `apt-Gemma3`: Ollama-deployed LLM for interaction/moderation
-
-### 4. `sudo-eopkg-RepoPulse` – Sync, Submission, & Distribution Layer
-
-* **Purpose**: Mirror updates, job orchestration, submission intake
-* **Services**:
-
-    * `apt-Dispatcher`: Controls sync task flow
-    * `apt-RsyncWorkers`: Executes mirror jobs
-    * `apt-RsyncSecretary`: Files mirror metadata back into MongoDB
-    * `apt-SubmissionSecretary`: Ingests user-uploaded content (screenshots, hashes, etc.)
-    * `apt-SubmissionProcessor`: Python toolchain for image, data, and hash enrichment (Pillow, PyMongo)
-
-### 5. `sudo-apt-Utilities`
-
-* **Purpose**: Helper containers, file servers, internal tooling
-* **(Details to be expanded as utilities are added)**
-
-### 6. 🔮 Future Layers
-
-* `sudo-rpm-*`: Possibly for build automation, mirror package validation, or CI/CD
-* `sudo-mythic-*`: Leveled storage, compute grid, or distributed model inference
+APTlantis isn’t just utilitarian — it’s expressive. It preserves obscure distros, adds style to syncing, and turns mirrors into a mythos. This is infrastructure with identity.
 
 ---
 
-## 📂 Directory & Naming Conventions
+### 📂 Repo Structure
 
-* `docker/sudo-eopkg-Vanguard/eopkg-CrowdSec/` → container-specific config
-* `networks:` clearly align with `sudo-*` layer domains
-* `container_name:` and `image:` are prefixed with logical roles (`apt-`, `eopkg-`, `swupd-`)
+```
 
----
+.
+├── docker/         # Docker stack for each subsystem
+├── docs/           # Site walkthroughs, lore, notes (soon)
+├── public/         # Static web assets
+├── src/            # TypeScript/JS/Go/Rust/Python code
+├── styles/         # Tailwind/Bootstrap/etc.
+└── config files    # JSON, PNPM, TS, Tailwind, PostCSS...
 
-## 🗺️ Visuals To Be Included
-
-1. **Layered Stack Diagram**: Shows all `sudo-*` layers and how containers flow
-2. **Perimeter & Submission Flow Map**:
-
-    * `Internet → BunkerWeb → Dispatcher → Secretary → Processor → Mongo`
-3. **Service Dependency Graph**:
-
-    * Directed graph mapping container-to-container edges (e.g. Promtail → Loki → Grafana)
+````
 
 ---
 
-## 🔐 Security Model
+### 📡 Getting Started
 
-* Edge-filtered by BunkerWeb with integrated ModSecurity and rate limiting
-* Layered detection with Suricata (packet), CrowdSec (behavioral), Fail2Ban (pattern)
-* Certbot with Cloudflare DNS API automates wildcard TLS
-* All access logged, metrics exposed, and alerting via Grafana dashboards
+```bash
+git clone https://github.com/yourname/APTlantis.git
+cd APTlantis
+pnpm install
+pnpm dev
+````
 
----
-
-## 💬 Internal Communication Paths
-
-* `Vault + ConsulTemplate` inject secrets dynamically to core services
-* MongoDB acts as centralized metadata/log/state store for multiple layers
-* Prometheus scrapes metrics across RepoPulse workers, IRC activity, submission flows
+*(Or use Docker Compose — see `docker/` dir)*
 
 ---
 
-## ✅ Immediate Production Benefits
+### 🪙 License
 
-* Every service is auditable, observable, and reproducible
-* Strong naming conventions mean infra-as-code can easily be documented, versioned, or deployed to CI/CD
-* The stack can scale layer-by-layer or all at once
+Public domain. Use it. Remix it. Mirror weird stuff. Spread the lore.
 
 ---
 
-> **Next Steps:**
->
-> * Formalize `.env` and `stack.info`/`infra.toml` metadata for each layer
-> * Add service probes (liveness/readiness)
-> * Write `dispatch` CLI script to start/stop `sudo-*` layers cleanly
-> * Document storage mount patterns for persistence
+### 👁‍🗨 Live Site
 
-APTlantis isn't just a project — it's a distributed ops operating system in the making.
+→ [https://aptlantis.net](https://aptlantis.net)
+→ Or `rsync://irc.aptlantis.net/module`
+
+---
+
+Want a distro mirrored? Have an obscure project? Need a relic forged?
+Reach out. Open a PR. Leave a footprint.
+
+```
