@@ -237,7 +237,7 @@
     "name": "apt-RsyncQubesOS",
     "container": "apt-RsyncQubesOS",
     "frequency":"15 */12 * * *",
-    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name QubesOS --path /mnt/aptlantis/mirrors/QubesOS rsync-ss --delete rsync://mirrors.nju.edu.cn/qubes/ /mnt/aptlantis/mirrors/QubesOS/ >> /mnt/aptlantis/mirrors/logs/qubesos_sync.log 2>&1"
+    "command": "/usr/local/bin/rsync-wrapper.sh --repo-name QubesOS --path /mnt/aptlantis/mirrors/QubesOS -av --delete rsync://mirrors.nju.edu.cn/qubes/ /mnt/aptlantis/mirrors/QubesOS/ >> /mnt/aptlantis/mirrors/logs/qubesos_sync.log 2>&1"
   },
   {
     "name": "apt-RsyncRaspberryPI",

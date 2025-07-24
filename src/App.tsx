@@ -43,6 +43,10 @@ const OnboardingPage = lazy(() =>
 );
 // Lazy load the CodingWeirdStuffPage
 const CodingWeirdStuffPage = lazy(() => import("./features/coding-weird-stuff").then(module => ({ default: module.CodingWeirdStuffPage })))
+// Lazy load the LinuxGenealogyPage
+const LinuxGenealogyPage = lazy(() => import("./features/linux-geneology").then(module => ({ default: module.LinuxGenealogyPage })))
+// Lazy load the TerryDavisVideosPage
+const TerryDavisVideosPage = lazy(() => import("./features/terry-davis-videos").then(module => ({ default: module.TerryDavisVideosPage })))
 
 function App() {
   return (
@@ -71,6 +75,8 @@ function App() {
                           <Route path="/museum" element={<MuseumPage />} />
                           <Route path="/onboarding" element={<OnboardingPage />} />
                           <Route path="/coding-weird-stuff" element={<CodingWeirdStuffPage />} />
+                          <Route path="/linux-geneology" element={<LinuxGenealogyPage />} />
+                          <Route path="/terry-davis-videos" element={<TerryDavisVideosPage />} />
                         </Routes>
                       </Suspense>
                     </ErrorBoundary>

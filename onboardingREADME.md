@@ -90,7 +90,7 @@ Aptlantis is layered with terms and themes from myth, command-line culture, and 
 
 Users can submit screenshots for their favorite distros — these are displayed in distro dashboards. Submission is handled via:
 
-* `zypper-SubmissionSecretary`: Metadata ingestion
+* `apt-SubmissionSecretary`: Metadata ingestion
 * `pillowtools`: Image processing and optimization
 * `MongoDB`: Structured entry storage
 

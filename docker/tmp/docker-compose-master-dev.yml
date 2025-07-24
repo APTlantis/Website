@@ -151,22 +151,22 @@ services:
 
   apt-Dispatcher:
     image: apt-dispatcher/apt-dispatcher
-    container_name: eopkg-Dispatcher
+    container_name: yum-Dispatcher
     ports:
       - "8083:9100"
     volumes:
-      - ./docker/sudo-eopkg-RepoPulse/eopkg-Dispatcher:/var/opt/eopkg-Dispatcher
+      - ./docker/sudo-eopkg-RepoPulse/yum-Dispatcher:/var/opt/yum-Dispatcher
     restart: unless-stopped
     networks:
       - sudo-apt-RepoPulse
 
   apt-RsyncWorkers:
     image: apt-rsync-workers/apt-rsync-workers
-    container_name: eopkg-RsyncWorkers
+    container_name: yum-RsyncWorkers
     ports:
       - "8084:9100"
     volumes:
-      - ./docker/sudo-eopkg-RepoPulse/eopkg-RsyncWorkers:/var/opt/eopkg-RsyncWorkers
+      - ./docker/sudo-eopkg-RepoPulse/yum-RsyncWorkers:/var/opt/yum-RsyncWorkers
     restart: unless-stopped
     networks:
       - sudo-apt-RepoPulse

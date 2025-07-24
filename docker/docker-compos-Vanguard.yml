@@ -119,6 +119,19 @@ services:
       - sudo-eopkg-Vanguard
     restart: unless-stopped
 
+  eopkg-VaultConsul:
+    image: hashicorp/vault-consul
+    container_name: eopkg-VaultConsul
+    environment:
+      - VAULT_ADDR=http://eopkg-Vault:8200
+      - CONSUL_HTTP_ADDR=http://eopkg-ConsulTemplate:8500
+    depends_on:
+      - eopkg-Vault
+      - eopkg-ConsulTemplate
+    networks:
+      - sudo-eopkg-Vanguard
+    restart: unless-stopped
+
   eopkg-LogExporter:
     image: grafana/promtail:latest
     container_name: eopkg-LogExporter
