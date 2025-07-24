@@ -1,0 +1,25 @@
+🧪 rsyncd.conf Example
+Ensure you’re using:
+
+log file = /var/log/rsyncd.log
+Make sure your host mounts or copies that file into the container.
+
+👣 Steps to Run
+# Start everything
+docker compose up --build
+To simulate logs:
+
+echo "2025/07/22 18:30:00 [12345] connect from 192.0.2.42" >> rsyncd.log
+echo "2025/07/22 18:30:01 [12345] sent 2097152 bytes  received 0 bytes  total size 2097152" >> rsyncd.log
+Check MongoDB:
+
+docker exec -it rsync-parser mongo
+> use aptlantis
+> db.rsync_logs.find().pretty()
+🔐 Privacy
+To go fully anonymous:
+
+Replace IPs with salted hashes or CIDR truncation.
+
+Omit timestamps or reduce precision to hour or day.
+
